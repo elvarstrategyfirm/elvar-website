@@ -1,0 +1,101 @@
+{
+ "window": "Dec 6 – Jan 24",
+ "day": "Sunday",
+ "length": "30 min",
+ "timezone": "Eastern Time",
+ "zoom": {
+  "link": "https://us06web.zoom.us/j/5088477157?pwd=jwoWNguKQbg8yMYuD8yCiWmSR09k9O.1",
+  "passcode": "1234",
+  "howTo": [
+   "Join 5 minutes early. Camera on.",
+   "Rename yourself: First Name – Age Group.",
+   "Have your booklet and a pencil ready."
+  ]
+ },
+ "app": {
+  "link": "https://apps.apple.com/us/app/elvar/id6786340318",
+  "blurb": "Log quick reflections after practices and games, and keep working on each Sunday's topic between sessions. iPhone only.",
+  "code": "123456",
+  "team": "Team Evo Academy"
+ },
+ "booking": "https://elvarstrategyfirm.as.me/schedule/523525b2",
+ "sessions": [
+  {
+   "n": 1,
+   "topic": "What Can I Control",
+   "date": "2026-12-06",
+   "video": ""
+  },
+  {
+   "n": 2,
+   "topic": "Talking to Yourself in Games",
+   "date": "2026-12-20",
+   "video": ""
+  },
+  {
+   "n": 3,
+   "topic": "Understanding & Controlling Your Emotions",
+   "date": "2027-01-03",
+   "video": ""
+  },
+  {
+   "n": 4,
+   "topic": "Playing with Confidence",
+   "date": "2027-01-10",
+   "video": ""
+  },
+  {
+   "n": 5,
+   "topic": "Handling Pressure in Big Moments",
+   "date": "2027-01-17",
+   "video": ""
+  },
+  {
+   "n": 6,
+   "topic": "Resetting After Bad Situations",
+   "date": "2027-01-24",
+   "video": ""
+  }
+ ],
+ "groups": [
+  {
+   "id": "9U-10U",
+   "label": "9U & 10U",
+   "ages": [
+    9,
+    10
+   ],
+   "time": "5:30–6:00 PM"
+  },
+  {
+   "id": "11U-12U",
+   "label": "11U & 12U",
+   "ages": [
+    11,
+    12
+   ],
+   "time": "6:00–6:30 PM"
+  },
+  {
+   "id": "13U-14U",
+   "label": "13U & 14U",
+   "ages": [
+    13,
+    14
+   ],
+   "time": "6:30–7:00 PM"
+  },
+  {
+   "id": "15U-17U",
+   "label": "15U & 17U",
+   "ages": [
+    15,
+    16,
+    17
+   ],
+   "time": "7:00–7:30 PM"
+  }
+ ],
+ "recaps": [],
+ "_howToUpdate": "After each session: set sessions[n].video to the unlisted YouTube link (one video for all teams). Add one recap per team to recaps: {team: 9U-10U|11U-12U|13U-14U|15U-17U, session, mainFocus, takeaways[], actions[]}."
+}
