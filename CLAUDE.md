@@ -17,5 +17,6 @@ Static site hosted on GitHub Pages. Every push to `main` goes live in about a mi
 - One-on-One portal chat: `/one-on-one-partner-portal`
 - Team portal chat: `/team-portal`
 - Evo Academy chat: `/evo-academy` (weekly transcript + YouTube link → `sessions.json`)
+- NE Eagles chat: `/ne-eagles` (weekly YouTube link + recaps → `sessions.json`)
 
 Full guide: `claude/elvar-website-site-guide.md` in the Elvar Website project.
