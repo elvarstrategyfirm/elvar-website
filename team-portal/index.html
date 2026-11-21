@@ -35,13 +35,15 @@
   a.tile:hover::after{transform:scaleX(1)}
   a.tile:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
   .logo{width:112px;height:112px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;border:2px solid var(--gold);background:var(--gold-soft);overflow:hidden}
-  .logo img{width:78%;height:78%;object-fit:contain}
+  .logo img{width:74%;height:74%;object-fit:contain}
+  .logo.has-img{background:#fff;border-width:3px}
   .logo .mono{font-family:var(--head);font-weight:900;font-size:26px;letter-spacing:.04em;color:var(--gold)}
   .tile .name{font-family:var(--head);font-weight:800;font-size:18px;color:var(--white)}
   .tile .sub{font-size:13px;color:var(--muted);margin-top:6px}
   .tile .go{margin-top:16px;font-family:var(--head);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
   .tile.soon{opacity:.55}
   .tile.soon .logo{border-color:#444;background:transparent;filter:grayscale(1)}
+  .tile.soon .logo.has-img{background:#fff;filter:grayscale(.6);opacity:.8}
   .tile.soon .logo .mono,.tile.soon .go{color:var(--dim)}
   .cta{margin:10px 0 80px;border:1px solid var(--gold-line);border-radius:22px;padding:34px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:radial-gradient(120% 140% at 100% 0%,rgba(201,168,76,.16),transparent 55%),var(--card)}
   .cta h2{font-family:var(--head);font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:.02em}
@@ -112,7 +114,7 @@ const TEAMS = [
 const B = location.pathname.indexOf('/elvar-website/')===0 ? '/elvar-website' : '';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 document.getElementById('tiles').innerHTML = TEAMS.map((t,i) => {
-  const logo = `<div class="logo"><img src="${B}/assets/img/teams/${esc(t.logo)}" alt="${esc(t.name)} logo" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'mono',textContent:'${esc(t.initials)}'}))"></div>`;
+  const logo = `<div class="logo has-img"><img src="${B}/assets/img/teams/${esc(t.logo)}" alt="${esc(t.name)} logo" onerror="this.parentNode.classList.remove('has-img');this.replaceWith(Object.assign(document.createElement('span'),{className:'mono',textContent:'${esc(t.initials)}'}))"></div>`;
   const inner = `${logo}<div class="name">${esc(t.name)}</div><div class="sub">${esc(t.sub)}</div><div class="go">${t.url ? 'Enter portal &rarr;' : 'Coming soon'}</div>`;
   const d = `style="animation-delay:${i*.08}s"`;
   return t.url ? `<a class="tile" ${d} href="${B}${esc(t.url)}">${inner}</a>` : `<div class="tile soon" ${d}>${inner}</div>`;
