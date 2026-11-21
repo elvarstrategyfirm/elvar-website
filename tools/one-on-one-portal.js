@@ -8,8 +8,10 @@
 //   node tools/one-on-one-portal.js read   <INITIALS> <password>             -> prints the athlete's decrypted JSON
 //   node tools/one-on-one-portal.js add    <INITIALS> <password> <session.json>  -> adds/replaces a session (matched by date)
 //   node tools/one-on-one-portal.js new    <athlete.json> <password>          -> adds a new athlete tile
+//   node tools/one-on-one-portal.js set    <INITIALS> <password> <field> <json>  -> sets a profile field (e.g. zoom)
 //   node tools/one-on-one-portal.js repass <INITIALS> <old> <new>             -> changes an athlete's password
 //   node tools/one-on-one-portal.js build  <athletes.json> <passwords.json>   -> rebuilds the whole file from plaintext
+// Profile field zoom: {url, passcode} shows a "Join Zoom" button at the top of the dashboard.
 // Session shape: {date:"YYYY-MM-DD", title, mainFocus, actions[], coachNoted[], athleteNoted[], parentNotes[], extras?[{heading, items[]}], tip}
 // Passwords ignore case, spaces and symbols ("EOlson" = "eolson").
 const fs = require("fs"), path = require("path"), { webcrypto: crypto } = require("crypto");
@@ -44,6 +46,7 @@ const find = (d, ini) => { const i = d.athletes.findIndex(a => a.initials.toUppe
     d.athletes[i] = await seal(ath, a[1]); save(d); console.log(`${ath.name}: ${ath.sessions.length} sessions`);
   }
   else if (cmd === "new") { const d = load(), ath = JSON.parse(fs.readFileSync(a[0], "utf8")); ath.sessions = ath.sessions || []; d.athletes.push(await seal(ath, a[1])); save(d); console.log("Added " + ath.name); }
+  else if (cmd === "set") { const d = load(), i = find(d, a[0]), ath = await open_(d.athletes[i], a[1]); ath[a[2]] = JSON.parse(a[3]); d.athletes[i] = await seal(ath, a[1]); save(d); console.log(`Set ${a[2]} for ${ath.name}`); }
   else if (cmd === "repass") { const d = load(), i = find(d, a[0]); d.athletes[i] = await seal(await open_(d.athletes[i], a[1]), a[2]); save(d); console.log("Password changed for " + a[0]); }
   else if (cmd === "build") {
     const ath = JSON.parse(fs.readFileSync(a[0], "utf8")), pws = JSON.parse(fs.readFileSync(a[1], "utf8"));

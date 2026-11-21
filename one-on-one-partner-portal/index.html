@@ -73,6 +73,12 @@
   .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--muted)}
   .chip b{color:var(--white);font-weight:600}
 
+  .zoom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--card);border:1px solid var(--gold-line);border-radius:16px;padding:16px 20px;margin:-8px 0 28px}
+  .zoom .zl{display:flex;align-items:center;gap:14px}
+  .zoom .zi{width:42px;height:42px;border-radius:12px;background:var(--gold-soft);display:grid;place-items:center;color:var(--gold);flex:none}
+  .zoom b{display:block;font-family:var(--head);font-weight:800;font-size:15px}
+  .zoom span{color:var(--muted);font-size:13px}
+  .zoom span em{font-style:normal;color:var(--white);font-weight:600;letter-spacing:.06em}
   .viewing{display:none;align-items:center;justify-content:space-between;gap:12px;background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:12px;padding:10px 14px;margin-bottom:20px;font-size:14px}
   .viewing.show{display:flex}
   .viewing button{color:var(--gold);font-weight:600;font-size:13px}
@@ -297,7 +303,15 @@ function renderDash(){
         <div class="chip"><b>${s.length}</b> session${s.length===1?"":"s"}</div>
         ${last ? `<div class="chip">Last session <b>${esc(fmtDate(last.date))}</b></div>` : ""}
       </div>
-    </div>`;
+    </div>
+    ${a.zoom && a.zoom.url ? `
+    <div class="zoom">
+      <div class="zl">
+        <div class="zi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg></div>
+        <div><b>Session time? Join on Zoom</b><span>${a.zoom.passcode ? `Passcode: <em>${esc(a.zoom.passcode)}</em>` : "Tap to join your session"}</span></div>
+      </div>
+      <a class="btn-gold" href="${esc(a.zoom.url)}" target="_blank" rel="noopener">Join Zoom &rarr;</a>
+    </div>` : ""}`;
 
   if (!s.length){
     html += `
