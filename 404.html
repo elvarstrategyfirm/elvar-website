@@ -5,6 +5,16 @@
 <style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:#262626;color:#fff;font-family:Montserrat,sans-serif;padding:24px}
 .w{font-weight:900;font-size:64px}.w span{color:#C9A84C}p{color:#8a8a8a;margin:18px 0 30px}
 a{display:inline-block;margin:6px;padding:14px 26px;border-radius:999px;border:1px solid #C9A84C;color:#C9A84C;text-decoration:none;font-weight:800;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
-a:hover{background:#C9A84C;color:#1d1d1d}</style></head>
+a:hover{background:#C9A84C;color:#1d1d1d}</style><script>
+/* Preview fix: when viewed at *.github.io/elvar-website/, point site links and images at that sub-folder. Does nothing on elvarstrategyfirm.com. */
+(function(){var B='/elvar-website';if(location.pathname.indexOf(B+'/')!==0&&location.pathname!==B)return;
+function fx(u){return u&&u.charAt(0)==='/'&&u.charAt(1)!=='/'&&u.indexOf(B+'/')!==0?B+u:u}
+document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('a[href]').forEach(function(a){a.setAttribute('href',fx(a.getAttribute('href')))});
+document.querySelectorAll('img[src]').forEach(function(i){i.setAttribute('src',fx(i.getAttribute('src')))});
+document.querySelectorAll('style').forEach(function(s){s.textContent=s.textContent.replace(/url\('\/assets/g,"url('"+B+"/assets")})});
+})();
+</script>
+</head>
 <body><div><div class="w">EL<span>V</span>AR</div><p>We couldn't find that page.</p>
 <a href="/">Home</a><a href="/elvar-athlete">Athlete</a><a href="/elvar-business">Business</a></div></body></html>

@@ -159,6 +159,16 @@
   .voice .who{margin-top:26px;font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
   @media (max-width:860px){.topics,.recap-grid{grid-template-columns:1fr}.recap-grid{gap:40px}.art-box{aspect-ratio:4/3}}
 </style>
+<script>
+/* Preview fix: when viewed at *.github.io/elvar-website/, point site links and images at that sub-folder. Does nothing on elvarstrategyfirm.com. */
+(function(){var B='/elvar-website';if(location.pathname.indexOf(B+'/')!==0&&location.pathname!==B)return;
+function fx(u){return u&&u.charAt(0)==='/'&&u.charAt(1)!=='/'&&u.indexOf(B+'/')!==0?B+u:u}
+document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('a[href]').forEach(function(a){a.setAttribute('href',fx(a.getAttribute('href')))});
+document.querySelectorAll('img[src]').forEach(function(i){i.setAttribute('src',fx(i.getAttribute('src')))});
+document.querySelectorAll('style').forEach(function(s){s.textContent=s.textContent.replace(/url\('\/assets/g,"url('"+B+"/assets")})});
+})();
+</script>
 </head>
 <body>
 

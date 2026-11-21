@@ -203,6 +203,16 @@
   @media (max-width:1060px){.phases{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:860px){.arc{gap:8px;font-size:11px;letter-spacing:.14em}.arc i{width:18px}.hidden-costs,.proof,.builds,.phases,.principles{grid-template-columns:1fr}.hidden-costs,.proof{gap:40px}.costs{grid-template-columns:1fr}.row{grid-template-columns:1fr}.row .after{border-left:none;border-top:1px solid rgba(201,168,76,.25)}.row:first-child{display:none}.row .before::before{content:"Before: ";font-weight:700}.row .after::before{content:"With Elvar: ";font-weight:700;color:var(--gold)}}
 </style>
+<script>
+/* Preview fix: when viewed at *.github.io/elvar-website/, point site links and images at that sub-folder. Does nothing on elvarstrategyfirm.com. */
+(function(){var B='/elvar-website';if(location.pathname.indexOf(B+'/')!==0&&location.pathname!==B)return;
+function fx(u){return u&&u.charAt(0)==='/'&&u.charAt(1)!=='/'&&u.indexOf(B+'/')!==0?B+u:u}
+document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('a[href]').forEach(function(a){a.setAttribute('href',fx(a.getAttribute('href')))});
+document.querySelectorAll('img[src]').forEach(function(i){i.setAttribute('src',fx(i.getAttribute('src')))});
+document.querySelectorAll('style').forEach(function(s){s.textContent=s.textContent.replace(/url\('\/assets/g,"url('"+B+"/assets")})});
+})();
+</script>
 </head>
 <body>
 
