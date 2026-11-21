@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One-on-One Partner Portal | Elvar Strategy Firm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0C0C0C; --ink:#141414; --card:#191919; --card2:#1F1F1F; --line:#2A2A2A;
+    --gold:#C9A84C; --gold-soft:rgba(201,168,76,.12); --gold-line:rgba(201,168,76,.35);
+    --white:#F2F2F2; --muted:#A3A3A3; --dim:#6E6E6E; --err:#E0786B;
+    --head:'Montserrat',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--black);color:var(--white);font-family:var(--body);-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  .wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 22px}
+  main{flex:1}
+
+  /* ---------- top bar ---------- */
+  .bar{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(12,12,12,.92);backdrop-filter:blur(8px);z-index:20}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+  .bar img{height:26px;display:block}
+  .bar-actions{display:flex;gap:10px;align-items:center}
+  .btn-gold{background:var(--gold);color:#0C0C0C;font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:11px 18px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .15s,filter .15s;white-space:nowrap}
+  .btn-gold:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--muted);font-size:13px;font-weight:600;padding:10px 16px;border-radius:999px;white-space:nowrap}
+  .btn-ghost:hover{color:var(--white);border-color:var(--dim)}
+
+  /* ---------- landing ---------- */
+  .hero{padding:72px 0 36px;text-align:center}
+  .eyebrow{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  .hero h1{font-family:var(--head);font-weight:900;font-size:clamp(32px,5.4vw,54px);letter-spacing:.01em;margin:14px 0 14px;line-height:1.05;text-transform:uppercase}
+  .hero p{color:var(--muted);font-size:16px;max-width:520px;margin:0 auto;line-height:1.6}
+  .rule{width:56px;height:3px;background:var(--gold);margin:26px auto 0;border-radius:2px}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:16px;padding:28px 0 80px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 16px 22px;text-align:center;transition:border-color .2s,transform .2s,background .2s;position:relative;overflow:hidden}
+  .tile::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .25s}
+  .tile:hover{border-color:var(--gold-line);transform:translateY(-3px);background:var(--card2)}
+  .tile:hover::after{transform:scaleX(1)}
+  .tile:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .mono{width:78px;height:78px;border-radius:50%;margin:0 auto 16px;display:grid;place-items:center;font-family:var(--head);font-weight:900;font-size:26px;letter-spacing:.04em;border:2px solid var(--gold);color:var(--gold);background:var(--gold-soft)}
+  .tile .team{font-size:13px;color:var(--muted);font-weight:500}
+  .tile .lock{font-size:11px;color:var(--dim);margin-top:10px;letter-spacing:.12em;text-transform:uppercase;display:flex;gap:6px;justify-content:center;align-items:center}
+
+  /* ---------- modal ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+  .scrim.open{display:flex}
+  .modal{background:var(--ink);border:1px solid var(--line);border-radius:22px;width:100%;max-width:380px;padding:34px 28px 28px;text-align:center;position:relative}
+  .modal .x{position:absolute;top:14px;right:16px;color:var(--dim);font-size:22px;line-height:1;padding:4px 8px}
+  .modal .x:hover{color:var(--white)}
+  .modal h2{font-family:var(--head);font-weight:800;font-size:20px;margin:4px 0 6px}
+  .modal p{color:var(--muted);font-size:14px;margin-bottom:20px}
+  .modal input{width:100%;background:var(--black);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--white);font-size:17px;letter-spacing:.2em;text-align:center;font-family:var(--head);font-weight:700;outline:none;text-transform:uppercase}
+  .modal input:focus{border-color:var(--gold)}
+  .modal .btn-gold{width:100%;justify-content:center;margin-top:14px;padding:14px}
+  .modal .msg{min-height:20px;font-size:13px;color:var(--err);margin-top:12px}
+  .shake{animation:shake .35s}
+  @keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+
+  /* ---------- dashboard ---------- */
+  .dash{display:none;padding-top:40px;padding-bottom:70px}
+  .dash.open{display:block}
+  .welcome{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:26px;border-bottom:1px solid var(--line);margin-bottom:30px}
+  .welcome h1{font-family:var(--head);font-weight:900;font-size:clamp(28px,4.4vw,42px);line-height:1.1;margin-top:10px}
+  .welcome h1 span{color:var(--gold)}
+  .meta{display:flex;gap:10px;flex-wrap:wrap}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--muted)}
+  .chip b{color:var(--white);font-weight:600}
+
+  .viewing{display:none;align-items:center;justify-content:space-between;gap:12px;background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:12px;padding:10px 14px;margin-bottom:20px;font-size:14px}
+  .viewing.show{display:flex}
+  .viewing button{color:var(--gold);font-weight:600;font-size:13px}
+
+  .sess-label{display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;margin-bottom:16px}
+  .sess-label .eyebrow{white-space:nowrap}
+  .sess-label .eyebrow{font-size:11px}
+  .sess-label .date{color:var(--muted);font-size:14px}
+  .focus{background:linear-gradient(135deg,#1C1A14 0%,var(--card) 70%);border:1px solid var(--gold-line);border-radius:20px;padding:28px 28px 30px;margin-bottom:18px;position:relative;overflow:hidden}
+  .focus::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--gold)}
+  .focus .txt.long{font-size:clamp(18px,2.2vw,22px);line-height:1.4}
+  .focus .txt{font-family:var(--head);font-weight:800;font-size:clamp(20px,2.8vw,27px);line-height:1.3;margin-top:12px}
+
+  .grid2{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;margin-bottom:18px}
+  .grid2.even{grid-template-columns:1fr 1fr}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}
+  .card h3{font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  .card h3 .ico{width:28px;height:28px;border-radius:8px;background:var(--gold-soft);display:grid;place-items:center;font-size:14px}
+  .actions{list-style:none;display:flex;flex-direction:column;gap:12px;counter-reset:a}
+  .actions li{counter-increment:a;display:flex;gap:14px;align-items:flex-start;background:var(--black);border:1px solid var(--line);border-radius:14px;padding:14px 16px;line-height:1.5;font-size:15px}
+  .actions li::before{content:counter(a);flex:none;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#0C0C0C;font-family:var(--head);font-weight:900;font-size:14px;display:grid;place-items:center;margin-top:-1px}
+  .tip{background:var(--gold);color:#0C0C0C;border:0;display:flex;flex-direction:column}
+  .tip h3{color:#0C0C0C}
+  .tip h3 .ico{background:rgba(0,0,0,.12)}
+  .tip .quote{font-family:var(--head);font-weight:800;font-size:19px;line-height:1.4;flex:1}
+  .tip .sig{margin-top:18px;font-size:13px;font-weight:600;opacity:.75}
+  .bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
+  b.lbl{color:var(--white);font-weight:600}
+  .actions b.lbl{display:block;color:var(--gold);font-family:var(--head);font-weight:800;margin-bottom:2px}
+  .bullets li{position:relative;padding-left:20px;line-height:1.55;font-size:15px;color:#DADADA}
+  .bullets li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+  .parent{border-color:var(--gold-line)}
+  .parent .sub{color:var(--muted);font-size:13px;margin:-8px 0 14px}
+
+  .history{margin-top:44px}
+  .history h2{font-family:var(--head);font-weight:800;font-size:20px;margin-bottom:6px}
+  .history .hint{color:var(--muted);font-size:14px;margin-bottom:18px}
+  .hlist{display:flex;flex-direction:column;gap:10px}
+  .hitem{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;transition:border-color .15s,background .15s}
+  .hitem:hover{border-color:var(--gold-line);background:var(--card2)}
+  .hitem.active{border-color:var(--gold)}
+  .hitem .num{flex:none;font-family:var(--head);font-weight:900;color:var(--gold);font-size:13px;letter-spacing:.08em;width:92px;white-space:nowrap}
+  .hitem .hd{flex:none;color:var(--muted);font-size:13px;width:110px}
+  .hitem .hf{flex:1;font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hitem .arr{color:var(--dim)}
+
+  .cta{margin-top:48px;border:1px solid var(--gold-line);border-radius:22px;padding:34px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:radial-gradient(120% 140% at 100% 0%,rgba(201,168,76,.16),transparent 55%),var(--card)}
+  .cta h2{font-family:var(--head);font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:.02em}
+  .cta p{color:var(--muted);font-size:15px;margin-top:6px;max-width:460px;line-height:1.5}
+
+  .empty{background:var(--card);border:1px dashed var(--gold-line);border-radius:20px;padding:56px 24px;text-align:center}
+  .empty .mono{margin-bottom:18px}
+  .empty h2{font-family:var(--head);font-weight:800;font-size:22px;margin-bottom:8px}
+  .empty p{color:var(--muted);max-width:420px;margin:0 auto;line-height:1.6}
+
+  footer{border-top:1px solid var(--line);padding:22px 0 28px}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--dim)}
+  footer .credit{color:#7A7A7A;font-size:11px}
+
+  @media (max-width:760px){
+    .grid2,.grid2.even{grid-template-columns:1fr}
+    .hero{padding:52px 0 24px}
+    .tiles{grid-template-columns:repeat(2,1fr);gap:12px}
+    .tile{padding:24px 10px 18px}
+    .mono{width:66px;height:66px;font-size:22px}
+    .bar .btn-gold .long{display:none}
+    .hitem .hd{display:none}
+    .focus,.card{padding:20px}
+  }
+</style>
+<meta name="robots" content="noindex">
+<script>
+/* Preview fix: when viewed at *.github.io/elvar-website/, point site links and images at that sub-folder. Does nothing on elvarstrategyfirm.com. */
+(function(){var B='/elvar-website';if(location.pathname.indexOf(B+'/')!==0&&location.pathname!==B)return;
+function fx(u){return u&&u.charAt(0)==='/'&&u.charAt(1)!=='/'&&u.indexOf(B+'/')!==0?B+u:u}
+document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('a[href]').forEach(function(a){a.setAttribute('href',fx(a.getAttribute('href')))});
+document.querySelectorAll('img[src]').forEach(function(i){i.setAttribute('src',fx(i.getAttribute('src')))});
+});
+})();
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a href="/one-on-one-partnerships" id="home" aria-label="Back to One-on-One Partnerships"><img src="/assets/img/elvar-wordmark.png" alt="ELVAR"></a>
+    <div class="bar-actions">
+      <button class="btn-ghost" id="lockBtn" style="display:none">Lock</button>
+      <a class="btn-gold" href="https://elvarstrategyfirm.as.me/schedule/523525b2" target="_blank" rel="noopener">Book <span class="long">a Session</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="landing" class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Elvar Strategy Firm</div>
+      <h1>One-on-One Partnerships</h1>
+      <p>Your private recap portal. Tap your initials and enter your password to see your latest session, your actions for the week and every recap we've built together.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <section id="dash" class="dash wrap" aria-live="polite"></section>
+</main>
+
+<div class="scrim" id="scrim" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <form class="modal" id="modal" autocomplete="off">
+    <button type="button" class="x" id="mClose" aria-label="Close">&times;</button>
+    <div class="mono" id="mMono"></div>
+    <h2 id="mTitle">Enter your password</h2>
+    <p id="mTeam"></p>
+    <input id="pw" type="password" inputmode="text" autocapitalize="characters" spellcheck="false" placeholder="Password" aria-label="Password">
+    <button class="btn-gold" type="submit" id="go">Open my portal</button>
+    <div class="msg" id="msg"></div>
+  </form>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; Elvar Strategy Firm &middot; Private athlete recaps</span>
+    <span class="credit">Prepared by Michael Chaves Jr.</span>
+  </div>
+</footer>
+
+<script>
+const BOOKING = "https://elvarstrategyfirm.as.me/schedule/523525b2";
+let VAULT = [];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const norm = p => p.toUpperCase().replace(/[^A-Z0-9]/g, "");
+const fmtDate = d => { try { return new Date(d + "T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}); } catch(e){ return d; } };
+
+let current = null, athlete = null, viewIdx = 0;
+
+/* ---------- tiles ---------- */
+/* Hide athletes with no session in the last 6 months (athletes with no sessions yet stay visible) */
+const CUTOFF = (() => { const d = new Date(); d.setMonth(d.getMonth() - 6); return d.toISOString().slice(0,10); })();
+function renderTiles(){
+  const ACTIVE = VAULT.map((a,i) => ({a,i})).filter(({a}) => !a.last || a.last >= CUTOFF);
+  $("#tiles").innerHTML = ACTIVE.map(({a,i}) => `
+  <button class="tile" data-i="${i}" aria-label="Open portal ${esc(a.initials)}">
+    <div class="mono">${esc(a.initials)}</div>
+    <div class="team">${esc(a.team)}</div>
+    <div class="lock"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Private</div>
+  </button>`).join("");
+  document.querySelectorAll(".tile").forEach(t => t.onclick = () => openModal(+t.dataset.i));
+}
+fetch("recaps.json", {cache: "no-cache"}).then(r => r.json()).then(d => { VAULT = d.athletes || d; renderTiles(); })
+  .catch(() => { $("#tiles").innerHTML = '<p style="color:var(--muted);text-align:center;grid-column:1/-1">The portal could not load. Please refresh the page.</p>'; });
+
+function openModal(i){
+  current = VAULT[i];
+  $("#mMono").textContent = current.initials;
+  $("#mTeam").textContent = current.team;
+  $("#pw").value = ""; $("#msg").textContent = "";
+  $("#scrim").classList.add("open");
+  setTimeout(() => $("#pw").focus(), 50);
+}
+function closeModal(){ $("#scrim").classList.remove("open"); }
+$("#mClose").onclick = closeModal;
+$("#scrim").addEventListener("click", e => { if (e.target.id === "scrim") closeModal(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+/* ---------- unlock ---------- */
+async function decrypt(entry, password){
+  const enc = new TextEncoder();
+  const base = await crypto.subtle.importKey("raw", enc.encode(norm(password)), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({name:"PBKDF2", salt:b64(entry.salt), iterations:entry.iter, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(entry.iv)}, key, b64(entry.data));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+$("#modal").addEventListener("submit", async e => {
+  e.preventDefault();
+  const pw = $("#pw").value;
+  if (!pw.trim()) return;
+  $("#go").textContent = "Unlocking…"; $("#msg").textContent = "";
+  try {
+    athlete = await decrypt(current, pw);
+    closeModal(); showDash();
+  } catch(err) {
+    $("#msg").textContent = "That password didn't match. Try again.";
+    $("#modal").classList.remove("shake"); void $("#modal").offsetWidth; $("#modal").classList.add("shake");
+  } finally { $("#go").textContent = "Open my portal"; }
+});
+
+/* ---------- dashboard ---------- */
+function lock(){
+  athlete = null;
+  $("#dash").classList.remove("open"); $("#dash").innerHTML = "";
+  $("#landing").style.display = ""; $("#lockBtn").style.display = "none";
+  window.scrollTo(0,0);
+}
+$("#lockBtn").onclick = lock;
+$("#home").onclick = e => { if (athlete) { e.preventDefault(); lock(); } };
+
+function fmtItem(x){ const m=String(x).match(/^([^:]{2,40}):\s+(.*)$/s); return m ? `<b class="lbl">${esc(m[1])}</b> ${esc(m[2])}` : esc(x); }
+function list(items){ return `<ul class="bullets">${(items||[]).map(x=>`<li>${fmtItem(x)}</li>`).join("")}</ul>`; }
+
+function showDash(){
+  $("#landing").style.display = "none"; $("#lockBtn").style.display = "";
+  const s = (athlete.sessions||[]).slice().sort((a,b)=> (b.date||"").localeCompare(a.date||""));
+  athlete._sorted = s; viewIdx = 0;
+  renderDash();
+  $("#dash").classList.add("open");
+  window.scrollTo(0,0);
+}
+
+function renderDash(){
+  const a = athlete, s = a._sorted;
+  const last = s[0];
+  let html = `
+    <div class="welcome">
+      <div>
+        <div class="eyebrow">${esc(a.team)} &middot; One-on-One Partnership</div>
+        <h1>Welcome back, <span>${esc(a.first)}</span></h1>
+      </div>
+      <div class="meta">
+        <div class="chip"><b>${s.length}</b> session${s.length===1?"":"s"}</div>
+        ${last ? `<div class="chip">Last session <b>${esc(fmtDate(last.date))}</b></div>` : ""}
+      </div>
+    </div>`;
+
+  if (!s.length){
+    html += `
+      <div class="empty">
+        <div class="mono">${esc(a.initials)}</div>
+        <h2>Your recaps are on the way</h2>
+        <p>After each session, Coach Mike posts your main focus, your actions for the week and his tip of the week right here.</p>
+      </div>`;
+  } else {
+    const x = s[viewIdx];
+    const n = s.length - viewIdx;
+    html += `
+      <div class="viewing ${viewIdx ? "show" : ""}">
+        <span>You're viewing Session ${n} from ${esc(fmtDate(x.date))}.</span>
+        <button type="button" data-go="0">Back to latest &rarr;</button>
+      </div>
+      <div class="sess-label"><span class="eyebrow">${viewIdx ? "Session " + n : "Latest session"}</span><span class="date">${esc(fmtDate(x.date))}${x.title ? " &middot; " + esc(x.title) : ""}</span></div>
+
+      <div class="focus">
+        <div class="eyebrow">Main Focus</div>
+        <div class="txt ${String(x.mainFocus).length>110?"long":""}">${esc(x.mainFocus)}</div>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3><span class="ico">&#10003;</span>Your Actions This Week</h3>
+          <ol class="actions">${(x.actions||[]).map(t=>`<li><span>${fmtItem(t)}</span></li>`).join("")}</ol>
+        </div>
+        <div class="card tip">
+          <h3><span class="ico">&#9733;</span>Coach Mike's Tip of the Week</h3>
+          <div class="quote">${esc(x.tip)}</div>
+          <div class="sig">&mdash; Coach Mike</div>
+        </div>
+      </div>
+
+      ${(x.extras||[]).length ? `<div class="grid2 ${x.extras.length===2?"even":""}" style="${x.extras.length===1?"grid-template-columns:1fr":""}">${x.extras.map(e=>`<div class="card"><h3><span class="ico">&#9873;</span>${esc(e.heading)}</h3>${list(e.items)}</div>`).join("")}</div>` : ""}
+
+      ${(x.parentNotes && x.parentNotes.length) ? `
+      <div class="card parent" style="margin-bottom:18px">
+        <h3><span class="ico">&#9829;</span>For Parents</h3>
+        <div class="sub">How you can support ${esc(a.first)} this week</div>
+        ${list(x.parentNotes)}
+      </div>` : ""}
+
+      ${(()=>{ const c=[];
+        if ((x.coachNoted||[]).length) c.push(`<div class="card"><h3><span class="ico">&#9998;</span>What Coach Mike Noted</h3>${list(x.coachNoted)}</div>`);
+        if ((x.athleteNoted||[]).length) c.push(`<div class="card"><h3><span class="ico">&#10077;</span>What ${esc(a.first)} Noted</h3>${list(x.athleteNoted)}</div>`);
+        return c.length ? `<div class="grid2 ${c.length===2?"even":""}" style="${c.length===1?"grid-template-columns:1fr":""}">${c.join("")}</div>` : ""; })()}
+
+      <div class="history">
+        <h2>Session History</h2>
+        <div class="hint">Tap any session to reopen its recap.</div>
+        <div class="hlist">
+          ${s.map((y,i)=>`
+            <button type="button" class="hitem ${i===viewIdx?"active":""}" data-go="${i}">
+              <span class="num">SESSION ${s.length - i}</span>
+              <span class="hd">${esc(fmtDate(y.date))}</span>
+              <span class="hf">${esc(y.title || y.mainFocus)}</span>
+              <span class="arr">&rarr;</span>
+            </button>`).join("")}
+        </div>
+      </div>`;
+  }
+
+  html += `
+    <div class="cta">
+      <div>
+        <h2>Keep the momentum</h2>
+        <p>Ready for your next session? Grab a time that works for you and we'll build on this week's work.</p>
+      </div>
+      <a class="btn-gold" href="${BOOKING}" target="_blank" rel="noopener">Book More Sessions &rarr;</a>
+    </div>`;
+
+  $("#dash").innerHTML = html;
+  $("#dash").querySelectorAll("[data-go]").forEach(b => b.onclick = () => {
+    viewIdx = +b.dataset.go; renderDash();
+    $("#dash").scrollIntoView({behavior:"smooth"});
+  });
+}
+</script>
+</body>
+</html>
