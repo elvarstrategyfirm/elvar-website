@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confidentiality Policy — Elvar Strategy Firm</title>
+<meta name="description" content="How Elvar Strategy Firm handles the information you share.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#262626;--bg2:#1d1d1d;--card:#2e2e2e;--line:#3a3a3a;--gold:#C9A84C;--white:#fff;--text:#d2d2d2;--muted:#8a8a8a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;line-height:1.75}
+  a{color:inherit;text-decoration:none}
+  .gold{color:var(--gold)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(29,29,29,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .mini{font-weight:900;font-size:22px;color:var(--white)}
+  .links{display:flex;gap:28px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+  .links a{color:#bdbdbd;transition:color .2s} .links a:hover{color:var(--white)}
+
+  header{padding:150px 0 60px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+  header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 15% 20%,rgba(201,168,76,.09),transparent 55%)}
+  header .wrap{position:relative}
+  h1{font-size:clamp(40px,5.5vw,68px);font-weight:900;color:var(--white);line-height:1.05;letter-spacing:-.02em;margin-top:14px}
+  .dates{margin-top:18px;display:flex;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  .dates b{color:var(--white);font-weight:600}
+  .intro{margin-top:22px;max-width:680px;font-size:17px}
+
+  .layout{display:grid;grid-template-columns:240px 1fr;gap:70px;padding:60px 28px 100px}
+  .toc{position:sticky;top:100px;align-self:start}
+  .toc h4{font-size:11px;font-weight:700;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+  .toc ol{list-style:none;display:grid;gap:4px;border-left:1px solid var(--line)}
+  .toc a{display:block;padding:6px 0 6px 16px;margin-left:-1px;border-left:2px solid transparent;font-size:13px;color:var(--muted);transition:color .2s,border-color .2s}
+  .toc a:hover,.toc a.on{color:var(--white);border-left-color:var(--gold)}
+
+  article{max-width:760px}
+  .sec{padding:34px 0;border-bottom:1px solid var(--line);scroll-margin-top:96px}
+  .sec:first-child{padding-top:0}
+  .sec:last-child{border-bottom:none}
+  .sec h2{display:flex;gap:16px;align-items:baseline;font-size:22px;font-weight:800;color:var(--white);line-height:1.3}
+  .sec h2 .n{font-size:14px;font-weight:800;color:var(--gold);letter-spacing:.1em;min-width:26px}
+  .sec p,.sec ul{margin-top:14px;padding-left:42px}
+  .sec ul{list-style:none;display:grid;gap:10px}
+  .sec li{position:relative;padding-left:22px}
+  .sec li::before{content:"";position:absolute;left:0;top:11px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+  .sec strong{color:var(--white);font-weight:700}
+  .sec a{color:var(--gold);border-bottom:1px solid rgba(201,168,76,.4)}
+  .sec a:hover{border-bottom-color:var(--gold)}
+
+  .callout{margin:18px 0 0 42px;padding:20px 22px;border:1px solid rgba(201,168,76,.45);background:rgba(201,168,76,.07);border-radius:12px;font-size:15px}
+  .callout strong{color:var(--gold)}
+
+  .contact{margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:28px 30px}
+  .contact h3{font-size:19px;font-weight:800;color:var(--white)}
+  .contact p{font-size:14px;color:var(--muted);margin-top:4px}
+  .btn{display:inline-block;padding:14px 26px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;transition:background .25s,color .25s}
+  .btn:hover{background:var(--gold);color:#1d1d1d}
+
+  footer{border-top:1px solid var(--line);padding:56px 0 30px}
+  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+  .foot .mini{font-size:26px}
+  .foot .tagline{margin-top:10px;font-size:13px;color:var(--muted)}
+  .foot h4{font-size:11px;font-weight:700;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+  .foot ul{list-style:none;display:grid;gap:8px;font-size:14px}
+  .foot ul a{color:var(--muted)} .foot ul a:hover{color:var(--white)}
+  .credit{text-align:center;margin-top:46px;font-size:10px;color:#6b6b6b;letter-spacing:.05em}
+
+  @media (max-width:860px){
+    .links{gap:16px;font-size:10px}
+    .layout{grid-template-columns:1fr;gap:30px}
+    .toc{position:static}
+    .sec p,.sec ul{padding-left:0}
+    .callout{margin-left:0}
+    .foot{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="/" class="mini" aria-label="Elvar Strategy Firm home">EL<span class="gold">V</span>AR</a>
+    <div class="links">
+      <a href="/elvar-athlete">Athlete</a>
+      <a href="/elvar-business">Business</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Legal</div>
+    <h1>Confidentiality Policy</h1>
+    <div class="dates"><span>Originally effective <b>August 2, 2025</b></span><span>Last updated <b>November 20, 2026</b></span></div>
+    <p class="intro">At Elvar Strategy Firm, we value your trust. This Confidentiality Policy explains how we handle the information you share during our work together.</p>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <aside class="toc">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#private">1. Private Communication</a></li>
+      <li><a href="#minors">2. Athletes Under 18</a></li>
+      <li><a href="#storage">3. Storage of Information</a></li>
+      <li><a href="#privilege">4. Not Therapist-Client Privilege</a></li>
+      <li><a href="#exceptions">5. Exceptions</a></li>
+      <li><a href="#photos">6. Photos and Testimonials</a></li>
+      <li><a href="#aggregated">7. Aggregated Insights</a></li>
+      <li><a href="#tools">8. Communication and Tools</a></li>
+      <li><a href="#changes">9. Changes to This Policy</a></li>
+    </ol>
+  </aside>
+
+  <article>
+    <section class="sec" id="private">
+      <h2><span class="n">01</span>Private and Professional Communication</h2>
+      <p>All conversations, sessions and materials shared between you and Elvar Strategy Firm are treated as confidential. We do not disclose your information to others unless:</p>
+      <ul>
+        <li>You give explicit, written permission to share specific details.</li>
+        <li>We are legally or ethically required to disclose information, as described in the Exceptions section below.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="minors">
+      <h2><span class="n">02</span>Athletes Under 18</h2>
+      <p>For athletes under 18, we partner with parents and guardians. Session recaps, weekly actions and notes for parents may be shared with the athlete's parent or guardian, including through the athlete's partner portal.</p>
+      <p>For team partnerships, we may share general, team-level themes with coaches and program leaders. We do not share an individual athlete's personal details with their team or coaches without permission.</p>
+    </section>
+
+    <section class="sec" id="storage">
+      <h2><span class="n">03</span>Storage of Information</h2>
+      <p>Session notes, intake forms and performance materials are stored securely and are only accessible to your consultant. We use secure digital storage and password protection where applicable.</p>
+      <p>Session recaps in the partner portal are password protected and intended only for the athlete and their family. Please do not share your portal password.</p>
+    </section>
+
+    <section class="sec" id="privilege">
+      <h2><span class="n">04</span>Not Bound by Therapist-Client Privilege</h2>
+      <p>Although confidentiality is a top priority, Elvar Strategy Firm is not a licensed therapy or medical practice. Your information is therefore not protected by therapist-client or doctor-patient privilege under state or federal law. However, we voluntarily commit to holding your information with discretion and professionalism.</p>
+    </section>
+
+    <section class="sec" id="exceptions">
+      <h2><span class="n">05</span>Exceptions to Confidentiality</h2>
+      <p>We may be legally or ethically required to disclose information if any of the following apply:</p>
+      <ul>
+        <li>You disclose an intent to harm yourself or others.</li>
+        <li>There is suspected abuse or neglect of a minor, elderly person or dependent adult.</li>
+        <li>We are compelled by a court order or legal investigation.</li>
+      </ul>
+      <div class="callout"><strong>Need support right now?</strong> In the U.S., you can call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline) at any time. In an emergency, call <strong>911</strong>.</div>
+    </section>
+
+    <section class="sec" id="photos">
+      <h2><span class="n">06</span>Photos and Testimonials</h2>
+      <p>We only use client names, photos or testimonials on our website, social media or marketing materials with permission. For athletes under 18, we ask for a parent or guardian's permission. You can ask us to remove your photo or testimonial at any time.</p>
+    </section>
+
+    <section class="sec" id="aggregated">
+      <h2><span class="n">07</span>Use of Aggregated Insights</h2>
+      <p>From time to time, we may analyze trends across clients to improve our services. This information is always de-identified and aggregated. No individual names or specific situations will ever be shared without consent.</p>
+    </section>
+
+    <section class="sec" id="tools">
+      <h2><span class="n">08</span>Communication and Tools</h2>
+      <p>We may communicate by email, phone, text or video. We also use trusted third-party tools to run our services, such as online scheduling, video calls and writing tools that help us prepare session recaps. While we take steps to protect your privacy, no digital platform is 100% secure, and you accept some inherent risk when using electronic communication.</p>
+      <p>Information collected through the Elvar app is covered by the <a href="/elvar-app-privacy">Elvar App Privacy Policy</a>.</p>
+    </section>
+
+    <section class="sec" id="changes">
+      <h2><span class="n">09</span>Changes to This Policy</h2>
+      <p>We may update this policy from time to time. The "Last updated" date at the top of this page shows when it last changed. See also our <a href="/terms-and-conditions">Terms of Service</a>.</p>
+    </section>
+
+    <div class="contact">
+      <div>
+        <h3>Questions about your information?</h3>
+        <p>Reach out anytime at mike@elvarstrategyfirm.com</p>
+      </div>
+      <a class="btn" href="mailto:mike@elvarstrategyfirm.com?subject=Confidentiality%20Question">Email Us</a>
+    </div>
+  </article>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="/" class="mini">EL<span class="gold">V</span>AR</a>
+        <p class="tagline">Understand Yourself. Perform Better.</p>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/terms-and-conditions">Terms and Conditions</a></li>
+          <li><a href="/privacy-policy">Confidentiality Policy</a></li>
+          <li><a href="/team-partnerships">Team Partnerships</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:mike@elvarstrategyfirm.com?subject=Looking%20to%20Partner">Email Elvar</a></li>
+          <li><a href="https://www.instagram.com/elvarmindset/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/mchavesjr" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="credit">Prepared by Michael Chaves Jr.</div>
+  </div>
+</footer>
+
+<script>
+  // highlight the section you're reading in the contents list
+  const links=[...document.querySelectorAll('.toc a')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-30% 0px -60% 0px'});
+  document.querySelectorAll('.sec').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>

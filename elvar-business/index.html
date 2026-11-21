@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elvar Business — Elvar Strategy Firm</title>
+<meta name="description" content="Strategic consulting for business owners and leaders. Understand Your Business. Perform Better.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#262626;--bg2:#1d1d1d;--card:#2e2e2e;--line:#3a3a3a;--gold:#C9A84C;--white:#fff;--text:#d9d9d9;--muted:#8a8a8a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .gold{color:var(--gold)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+  h2{font-size:clamp(28px,3.6vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.01em;margin-top:14px}
+  section{padding:110px 0;scroll-margin-top:60px}
+  .center{text-align:center;max-width:720px;margin:0 auto}
+  .center p{margin-top:16px;color:var(--muted)}
+
+  /* NAV */
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+  nav.scrolled{background:rgba(29,29,29,.92);backdrop-filter:blur(10px);border-color:var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .mini{font-weight:900;font-size:22px;color:var(--white)}
+  .links{display:flex;align-items:center;gap:28px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+  .links a{color:#bdbdbd;transition:color .2s} .links a:hover{color:var(--white)}
+  .links a.active{color:var(--white);border-bottom:2px solid var(--gold);padding-bottom:4px}
+  .nav-book{color:#1d1d1d!important;background:var(--gold);padding:10px 18px;border-radius:999px;font-weight:800;letter-spacing:.14em;transition:background .2s}
+  .nav-book:hover{background:#d8b964}
+
+  /* HERO: no photo, a living gold grid instead */
+  .hero{position:relative;text-align:center;padding:130px 0 90px;overflow:hidden}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.07) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 35%,#000 20%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 35%,#000 20%,transparent 70%)}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(201,168,76,.12),transparent 55%);pointer-events:none}
+  .hero .wrap{position:relative;z-index:1}
+  .logo{display:inline-flex;flex-direction:column;align-items:center;animation:rise .9s ease both}
+  .wordmark{font-weight:900;font-size:clamp(84px,14vw,210px);line-height:.92;color:var(--white);letter-spacing:.01em}
+  .tag{display:flex;align-items:center;gap:16px;width:100%;margin-top:clamp(14px,1.8vw,24px)}
+  .tag .line{flex:1;height:3px;background:var(--gold)}
+  .tag .word{font-weight:600;font-size:clamp(18px,2.4vw,34px);letter-spacing:.42em;margin-right:-.42em;color:var(--white)}
+  h1{margin-top:clamp(34px,5vh,56px);font-size:clamp(26px,3.4vw,44px);font-weight:800;color:var(--white);letter-spacing:-.01em;animation:rise .9s .15s ease both}
+  .what{max-width:760px;margin:22px auto 0;font-size:clamp(15px,1.5vw,18px);line-height:1.65;color:#cfcfcf;animation:rise .9s .3s ease both}
+  .what b{color:var(--white)}
+  .sub{margin-top:12px;font-size:clamp(12px,1.25vw,15px);font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:#bdbdbd;animation:rise .9s .25s ease both}
+
+  /* the two options, illustrated instead of photographed */
+  .options{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1080px;margin:clamp(40px,6vh,64px) auto 0;animation:rise .9s .35s ease both}
+  .opt{position:relative;display:flex;flex-direction:column;justify-content:flex-end;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#2c2c2c,#1b1b1b);text-align:left;color:var(--white);transition:border-color .35s,transform .35s,box-shadow .35s}
+  .opt svg.art{position:relative;display:block;width:100%;height:190px;margin-top:10px}
+  .opt::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,18,18,.6),transparent 55%);pointer-events:none}
+  .opt .txt{position:relative;z-index:1;padding:6px 30px 30px;flex:1}
+  .opt .k{font-size:11px;font-weight:700;letter-spacing:.32em;color:var(--gold);text-transform:uppercase}
+  .opt .t{margin-top:8px;font-size:clamp(22px,2.3vw,30px);font-weight:800;line-height:1.15}
+  .opt .d{margin-top:10px;font-size:clamp(15px,1.35vw,17px);line-height:1.5;color:#d4d4d4;max-width:390px}
+  .opt .bar{display:block;width:36px;height:3px;background:var(--gold);margin-top:16px;transition:width .4s ease}
+  .opt .go{position:absolute;right:28px;bottom:28px;z-index:1;width:46px;height:46px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;transition:background .3s,color .3s,transform .3s}
+  .opt:hover,.opt:focus-visible{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.45);outline:none}
+  .opt:hover .bar{width:90px}
+  .opt:hover .go{background:var(--gold);color:#1d1d1d;transform:translateX(4px)}
+  .art .pulse{animation:pulse 3.2s ease-in-out infinite}
+  .art .flow{stroke-dasharray:6 8;animation:dash 2.4s linear infinite}
+  .opt:hover .art .ring{stroke-opacity:.6}
+  .hero-ctas{display:flex;justify-content:center;gap:14px;margin-top:40px;flex-wrap:wrap;animation:rise .9s .45s ease both}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;transition:transform .2s,background .2s,color .2s,box-shadow .2s}
+  .btn.primary{background:var(--gold);color:#1d1d1d} .btn.primary:hover{transform:translateY(-2px);background:#d8b964;box-shadow:0 14px 30px rgba(201,168,76,.25)}
+  .btn.ghost{border:1px solid var(--gold);color:var(--gold)} .btn.ghost:hover{background:var(--gold);color:#1d1d1d}
+
+  /* PAIN */
+  .pain{background:var(--bg2)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .questions{margin-top:34px;display:flex;flex-direction:column;gap:14px}
+  .q{display:flex;align-items:center;gap:18px;padding:20px 22px;border-left:3px solid var(--gold);background:var(--card);border-radius:0 10px 10px 0;font-size:17px;font-weight:600;color:var(--white);transition:transform .3s}
+  .q:hover{transform:translateX(6px)}
+  .q .n{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.1em}
+  .note{margin-top:28px;color:var(--muted);font-size:15px}
+  .visual{border-radius:16px;border:1px solid var(--line);background:linear-gradient(160deg,#2a2a2a,#1a1a1a);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .visual svg{width:88%;height:88%}
+
+  /* METHOD */
+  .method{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:34px 30px;position:relative;transition:border-color .3s,transform .3s}
+  .step:hover{border-color:var(--gold);transform:translateY(-4px)}
+  .step .num{font-size:60px;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.45);position:absolute;top:12px;right:22px;line-height:1}
+  .step h3{font-size:24px;font-weight:800;color:var(--white)}
+  .step h3::after{content:"";display:block;width:34px;height:3px;background:var(--gold);margin-top:14px}
+  .step p{margin-top:16px;font-size:15px;color:var(--muted)}
+
+  /* OFFERINGS */
+  .offer{background:var(--bg2)}
+  .offer.alt{background:var(--bg)}
+  .offer .label{display:inline-block;padding:7px 14px;border:1px solid rgba(201,168,76,.45);border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+  .offer p.lead{margin-top:18px;font-size:17px;color:var(--text)}
+  .list{margin-top:26px}
+  .li{display:flex;gap:16px;padding:15px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--white)}
+  .li::before{content:"";flex:0 0 10px;height:10px;margin-top:7px;background:var(--gold);transform:rotate(45deg)}
+  .li span{color:var(--muted);display:block;font-size:14px;margin-top:2px}
+  .examples{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .ex{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;transition:border-color .3s,transform .3s}
+  .ex:hover{border-color:var(--gold);transform:translateY(-3px)}
+  .ex .ico{width:42px;height:42px;border-radius:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.35);display:flex;align-items:center;justify-content:center;color:var(--gold)}
+  .ex h4{margin-top:14px;font-size:16px;font-weight:800;color:var(--white);line-height:1.3}
+  .ex p{margin-top:6px;font-size:13px;color:var(--muted)}
+  .inline-cta{margin-top:30px}
+
+  /* PEOPLE FIRST */
+  .people{text-align:center}
+  .people .big{font-size:clamp(26px,3.4vw,42px);font-weight:800;color:var(--white);line-height:1.25;max-width:880px;margin:18px auto 0}
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px;text-align:left}
+  .pr{border-top:2px solid var(--gold);padding-top:20px}
+  .pr h4{font-size:18px;font-weight:800;color:var(--white)}
+  .pr p{margin-top:8px;font-size:15px;color:var(--muted)}
+
+  /* QUOTE */
+  .voice{background:var(--bg2);text-align:center}
+  .voice .mark{font-size:90px;line-height:.6;color:var(--gold);font-weight:900;height:44px}
+  .voice blockquote{max-width:820px;margin:16px auto 0;font-size:clamp(18px,2vw,23px);line-height:1.6;color:#cfcfcf}
+  .voice b{color:var(--white)}
+  .voice .who{margin-top:26px;font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
+
+  /* CTA */
+  .cta{position:relative;text-align:center;overflow:hidden;padding:130px 0}
+  .cta .grid-bg{-webkit-mask-image:radial-gradient(ellipse at 50% 50%,#000 15%,transparent 65%);mask-image:radial-gradient(ellipse at 50% 50%,#000 15%,transparent 65%)}
+  .cta .wrap{position:relative}
+  .cta p{margin:18px auto 0;max-width:560px}
+  .btns{display:flex;gap:16px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:56px 0 30px}
+  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+  .foot .mini{font-size:26px}
+  .foot .tagline{margin-top:10px;font-size:13px;color:var(--muted)}
+  .foot h4{font-size:11px;font-weight:700;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+  .foot ul{list-style:none;display:grid;gap:8px;font-size:14px}
+  .foot ul a{color:var(--muted)} .foot ul a:hover{color:var(--white)}
+  .credit{text-align:center;margin-top:46px;font-size:10px;color:#6b6b6b;letter-spacing:.05em}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+  @keyframes dash{to{stroke-dashoffset:-28}}
+
+  @media (max-width:860px){
+    section{padding:80px 0}
+    .links{gap:12px;font-size:10px}
+    .links a.active,.links a[href="/elvar-athlete"]{display:none}
+    .nav-book{padding:9px 14px}
+    .options,.two,.method,.principles,.foot{grid-template-columns:1fr}
+    .two{gap:44px}
+    .opt svg.art{height:150px}
+    .wordmark{font-size:76px}
+    .examples{grid-template-columns:1fr}
+    .visual{aspect-ratio:4/3}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="/" class="mini" aria-label="Elvar Strategy Firm home">EL<span class="gold">V</span>AR</a>
+    <div class="links">
+      <a href="/elvar-athlete">Athlete</a>
+      <a href="/elvar-business" class="active">Business</a>
+      <a class="nav-book" href="https://elvarstrategyfirm.as.me/schedule/523525b2" target="_blank" rel="noopener">Book Consult</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="logo">
+      <div class="wordmark">EL<span class="gold">V</span>AR</div>
+      <div class="tag"><span class="line"></span><span class="word">BUSINESS</span><span class="line"></span></div>
+    </div>
+    <h1>Understand Your Business. <span class="gold">Perform Better.</span></h1>
+    <p class="sub">Strategic consulting for owners and leaders</p>
+    <p class="what">We help business owners <b>lead better</b> and help their businesses <b>run smoother</b>: one-on-one coaching for the person at the top, and hands-on consulting that makes day-to-day operations simpler and faster.</p>
+
+    <div class="options">
+      <a class="opt" href="/elvar-business/coaching">
+        <!-- illustration: a leader at the center, clarity radiating outward -->
+        <svg class="art" viewBox="0 -15 400 270" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g fill="none" stroke="#C9A84C">
+            <circle class="ring" cx="200" cy="120" r="34" stroke-opacity=".9" stroke-width="2"/>
+            <circle class="ring" cx="200" cy="120" r="64" stroke-opacity=".35"/>
+            <circle class="ring" cx="200" cy="120" r="96" stroke-opacity=".2"/>
+            <circle class="ring" cx="200" cy="120" r="130" stroke-opacity=".1"/>
+          </g>
+          <circle cx="200" cy="120" r="8" fill="#C9A84C"/>
+          <g fill="#C9A84C"><circle class="pulse" cx="264" cy="120" r="4"/><circle class="pulse" cx="136" cy="120" r="4" style="animation-delay:.8s"/><circle class="pulse" cx="200" cy="24" r="4" style="animation-delay:1.6s"/><circle class="pulse" cx="268" cy="52" r="3" style="animation-delay:2.2s"/><circle class="pulse" cx="130" cy="190" r="3" style="animation-delay:1.2s"/></g>
+        </svg>
+        <div class="txt">
+          <div class="k">For owners &amp; leaders</div>
+          <div class="t">Coaching for<br>Business Owners</div>
+          <div class="d">One-on-one sessions to help you think clearly, make better decisions and lead your team.</div>
+          <span class="bar"></span>
+        </div>
+        <span class="go">&rarr;</span>
+      </a>
+      <a class="opt" href="/elvar-business/systems">
+        <!-- illustration: scattered work becoming one clean flow -->
+        <svg class="art" viewBox="0 20 400 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g fill="none" stroke="#C9A84C" stroke-opacity=".35">
+            <path class="flow" d="M40 50 C 110 50, 120 120, 200 120"/>
+            <path class="flow" d="M40 120 L 200 120"/>
+            <path class="flow" d="M40 190 C 110 190, 120 120, 200 120"/>
+          </g>
+          <path d="M200 120 L 360 120" stroke="#C9A84C" stroke-width="2.5"/>
+          <g fill="#2e2e2e" stroke="#C9A84C" stroke-opacity=".6"><rect x="22" y="38" width="36" height="24" rx="5"/><rect x="22" y="108" width="36" height="24" rx="5"/><rect x="22" y="178" width="36" height="24" rx="5"/></g>
+          <rect x="184" y="104" width="32" height="32" rx="7" fill="#C9A84C"/>
+          <path d="M193 120 l5 5 l10 -11" stroke="#1d1d1d" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle class="pulse" cx="300" cy="120" r="5" fill="#C9A84C"/>
+          <circle class="pulse" cx="345" cy="120" r="5" fill="#C9A84C" style="animation-delay:1s"/>
+        </svg>
+        <div class="txt">
+          <div class="k">For your whole business</div>
+          <div class="t">Process &amp; Systems<br>Consulting</div>
+          <div class="d">We find where your team loses time, then build simpler processes and tools that give it back.</div>
+          <span class="bar"></span>
+        </div>
+        <span class="go">&rarr;</span>
+      </a>
+    </div>
+
+    <div class="hero-ctas">
+      <a class="btn primary" href="https://elvarstrategyfirm.as.me/schedule/523525b2" target="_blank" rel="noopener">Book a Free 15-Min Consult &rarr;</a>
+    </div>
+  </div>
+</header>
+
+<!-- PAIN POINTS -->
+<section class="pain">
+  <div class="wrap two">
+    <div class="reveal">
+      <div class="eyebrow">Sound familiar?</div>
+      <h2>You built the business.<br>Now it runs through you.</h2>
+      <div class="questions">
+        <div class="q"><span class="n">01</span>Too much of the business lives in your head?</div>
+        <div class="q"><span class="n">02</span>Your team spends hours on work that should take minutes?</div>
+        <div class="q"><span class="n">03</span>Growing, but your systems haven't caught up?</div>
+      </div>
+      <p class="note">These aren't effort problems. They're structure problems, and structure can be built.</p>
+    </div>
+    <div class="visual reveal" aria-hidden="true">
+      <!-- tangled lines on the left resolving into clean parallel lines on the right -->
+      <svg viewBox="0 0 400 400">
+        <g fill="none" stroke="#6E6E6E" stroke-width="1.6" stroke-opacity=".8">
+          <path d="M30 90 C 90 40, 60 200, 140 150 S 120 300, 190 200"/>
+          <path d="M30 170 C 120 120, 40 60, 120 90 S 170 260, 190 200"/>
+          <path d="M30 250 C 70 330, 150 180, 110 250 S 160 140, 190 200"/>
+          <path d="M30 320 C 100 280, 60 230, 150 280 S 150 180, 190 200"/>
+        </g>
+        <circle cx="200" cy="200" r="16" fill="#C9A84C"/>
+        <g fill="none" stroke="#C9A84C" stroke-width="2.2">
+          <path class="flow" d="M216 170 H 370"/><path class="flow" d="M216 200 H 370"/><path class="flow" d="M216 230 H 370"/>
+        </g>
+        <text x="40" y="365" fill="#8a8a8a" font-family="Montserrat" font-size="13" font-weight="700" letter-spacing="3">TODAY</text>
+        <text x="282" y="365" fill="#C9A84C" font-family="Montserrat" font-size="13" font-weight="700" letter-spacing="3">WITH ELVAR</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section>
+  <div class="wrap">
+    <div class="center reveal">
+      <div class="eyebrow">The Elvar approach</div>
+      <h2>Understand. Structure. Perform.</h2>
+      <p>The same framework we use with athletes, applied to the way your business runs.</p>
+    </div>
+    <div class="method">
+      <div class="step reveal"><span class="num">1</span><h3>Understand</h3><p>We spend time inside your business with you and your team, learning how work actually gets done and where time, energy and money leak out.</p></div>
+      <div class="step reveal"><span class="num">2</span><h3>Structure</h3><p>We design simpler processes, clearer roles and smarter tools that take repetitive work off your team's plate.</p></div>
+      <div class="step reveal"><span class="num">3</span><h3>Perform</h3><p>We put it into practice with your people, measure what changes and keep refining until it sticks.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP PARTNERSHIP -->
+<section class="offer" id="leadership">
+  <div class="wrap two">
+    <div class="reveal">
+      <span class="label">Coaching for Business Owners</span>
+      <h2>A thinking partner for the person at the top.</h2>
+      <p class="lead">Running a business is lonely at the top. Our one-on-one coaching gives owners and leaders a sounding board: someone to think out loud with, challenge assumptions and turn ideas into decisions.</p>
+      <div class="list">
+        <div class="li"><div>Decision clarity<span>Work through the big calls with structure instead of second-guessing.</span></div></div>
+        <div class="li"><div>Leading your team<span>Communication, accountability and building leaders under you.</span></div></div>
+        <div class="li"><div>Habits that scale<span>Routines that protect your time, focus and energy as you grow.</span></div></div>
+      </div>
+      <div class="inline-cta"><a class="btn ghost" href="/elvar-business/coaching">Learn more about coaching &rarr;</a></div>
+    </div>
+    <div class="visual reveal" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <g fill="none" stroke="#C9A84C">
+          <circle cx="200" cy="200" r="150" stroke-opacity=".12"/>
+          <circle cx="200" cy="200" r="110" stroke-opacity=".22"/>
+          <circle cx="200" cy="200" r="70" stroke-opacity=".45"/>
+        </g>
+        <circle cx="200" cy="200" r="34" fill="#C9A84C"/>
+        <text x="200" y="207" text-anchor="middle" fill="#1d1d1d" font-family="Montserrat" font-size="20" font-weight="900">YOU</text>
+        <g font-family="Montserrat" font-size="12" font-weight="700" letter-spacing="2" fill="#bdbdbd" text-anchor="middle">
+          <text x="200" y="118">CLARITY</text><text x="290" y="205">TEAM</text><text x="200" y="296">HABITS</text><text x="108" y="205">VISION</text>
+        </g>
+        <g fill="#C9A84C"><circle class="pulse" cx="278" cy="122" r="4"/><circle class="pulse" cx="278" cy="278" r="4" style="animation-delay:.8s"/><circle class="pulse" cx="122" cy="278" r="4" style="animation-delay:1.6s"/><circle class="pulse" cx="122" cy="122" r="4" style="animation-delay:2.4s"/></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONS & SYSTEMS -->
+<section class="offer alt" id="operations">
+  <div class="wrap two">
+    <div class="reveal">
+      <span class="label">Process &amp; Systems Consulting</span>
+      <h2>Less busywork. More time for what grows the business.</h2>
+      <p class="lead">We come into your business, sit with the people doing the work and map how things really run. Then we build simpler processes and modern tools that quietly handle the repetitive parts, so your team can focus on customers, quality and growth.</p>
+      <div class="list">
+        <div class="li"><div>Built around your people<span>We start with how your team works, not with software.</span></div></div>
+        <div class="li"><div>Practical, not complicated<span>Tools your team will actually use, explained in plain language.</span></div></div>
+        <div class="li"><div>Measured results<span>Clear before-and-after numbers on time saved and errors avoided.</span></div></div>
+      </div>
+      <div class="inline-cta"><a class="btn ghost" href="/elvar-business/systems">Learn more about consulting &rarr;</a></div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow" style="margin-bottom:18px">What this can look like</div>
+      <div class="examples">
+        <div class="ex"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l4-4 3 3 5-6"/></svg></div><h4>Reports that build themselves</h4><p>The weekly numbers you need, ready before you ask.</p></div>
+        <div class="ex"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M8 14l2 2 4-4"/></svg></div><h4>Schedules checked automatically</h4><p>Coverage gaps flagged before they become problems.</p></div>
+        <div class="ex"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div><h4>One clear dashboard</h4><p>Everything that matters in one place, not ten spreadsheets.</p></div>
+        <div class="ex"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h11a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M8 9h6M8 13h4"/></svg></div><h4>Training that runs itself</h4><p>Onboarding guides and playbooks your team can follow.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PEOPLE FIRST -->
+<section class="people">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">How we work</div>
+      <p class="big">Better tools don't replace good people. <span class="gold">They give good people their time back.</span></p>
+    </div>
+    <div class="principles">
+      <div class="pr reveal"><h4>People first</h4><p>Every change is built around your team and how they like to work.</p></div>
+      <div class="pr reveal"><h4>Plain language</h4><p>No jargon. You'll understand every recommendation and why it matters.</p></div>
+      <div class="pr reveal"><h4>Real experience</h4><p>Grounded in performance psychology and years of leading teams in multi-location operations.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="voice">
+  <div class="wrap reveal">
+    <div class="mark">&ldquo;</div>
+    <blockquote>Mike has the unique ability to <b>articulate abstract psychological concepts and turn them into actionable tools for self improvement.</b> He is constantly a resource for me when I need to gain clarity.</blockquote>
+    <div class="who">Business Owner</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap reveal">
+    <div class="eyebrow">Let's talk</div>
+    <h2>See what your business could look like<br>with the right structure behind it.</h2>
+    <p>A free, 15-minute conversation about your business, your team and where you want to go.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://elvarstrategyfirm.as.me/schedule/523525b2" target="_blank" rel="noopener">Book a Free Consult &rarr;</a>
+      <a class="btn ghost" href="mailto:mike@elvarstrategyfirm.com?subject=Elvar%20Business%20Inquiry">Email Elvar</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="/" class="mini">EL<span class="gold">V</span>AR</a>
+        <p class="tagline">Understand Your Business. Perform Better.</p>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/terms-and-conditions">Terms and Conditions</a></li>
+          <li><a href="/privacy-policy">Confidentiality Policy</a></li>
+          <li><a href="/elvar-athlete">Elvar Athlete</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:mike@elvarstrategyfirm.com?subject=Elvar%20Business%20Inquiry">Email Elvar</a></li>
+          <li><a href="https://www.instagram.com/elvarmindset/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/mchavesjr" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="credit">Prepared by Michael Chaves Jr.</div>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',scrollY>40);
+  addEventListener('scroll',onScroll);onScroll();
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

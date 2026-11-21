@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elvar App Privacy Policy — Elvar Strategy Firm</title>
+<meta name="description" content="Privacy Policy for the Elvar app, including protections for users under 18.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#262626;--bg2:#1d1d1d;--card:#2e2e2e;--line:#3a3a3a;--gold:#C9A84C;--white:#fff;--text:#d2d2d2;--muted:#8a8a8a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;line-height:1.75}
+  a{color:inherit;text-decoration:none}
+  .gold{color:var(--gold)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(29,29,29,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .mini{font-weight:900;font-size:22px;color:var(--white)}
+  .links{display:flex;gap:28px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+  .links a{color:#bdbdbd;transition:color .2s} .links a:hover{color:var(--white)}
+
+  header{padding:150px 0 60px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+  header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 15% 20%,rgba(201,168,76,.09),transparent 55%)}
+  header .wrap{position:relative}
+  h1{font-size:clamp(40px,5.5vw,68px);font-weight:900;color:var(--white);line-height:1.05;letter-spacing:-.02em;margin-top:14px}
+  .dates{margin-top:18px;display:flex;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  .dates b{color:var(--white);font-weight:600}
+  .intro{margin-top:22px;max-width:680px;font-size:17px}
+
+  .layout{display:grid;grid-template-columns:240px 1fr;gap:70px;padding:60px 28px 100px}
+  .toc{position:sticky;top:100px;align-self:start}
+  .toc h4{font-size:11px;font-weight:700;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+  .toc ol{list-style:none;display:grid;gap:4px;border-left:1px solid var(--line)}
+  .toc a{display:block;padding:6px 0 6px 16px;margin-left:-1px;border-left:2px solid transparent;font-size:13px;color:var(--muted);transition:color .2s,border-color .2s}
+  .toc a:hover,.toc a.on{color:var(--white);border-left-color:var(--gold)}
+
+  article{max-width:760px}
+  .sec{padding:34px 0;border-bottom:1px solid var(--line);scroll-margin-top:96px}
+  .sec:first-child{padding-top:0}
+  .sec:last-child{border-bottom:none}
+  .sec h2{display:flex;gap:16px;align-items:baseline;font-size:22px;font-weight:800;color:var(--white);line-height:1.3}
+  .sec h2 .n{font-size:14px;font-weight:800;color:var(--gold);letter-spacing:.1em;min-width:26px}
+  .sec p,.sec ul{margin-top:14px;padding-left:42px}
+  .sec ul{list-style:none;display:grid;gap:10px}
+  .sec li{position:relative;padding-left:22px}
+  .sec li::before{content:"";position:absolute;left:0;top:11px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+  .sec strong{color:var(--white);font-weight:700}
+  .sec a{color:var(--gold);border-bottom:1px solid rgba(201,168,76,.4)}
+  .sec a:hover{border-bottom-color:var(--gold)}
+
+  .callout{margin:18px 0 0 42px;padding:20px 22px;border:1px solid rgba(201,168,76,.45);background:rgba(201,168,76,.07);border-radius:12px;font-size:15px}
+  .callout strong{color:var(--gold)}
+
+  .contact{margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:28px 30px}
+  .contact h3{font-size:19px;font-weight:800;color:var(--white)}
+  .contact p{font-size:14px;color:var(--muted);margin-top:4px}
+  .btn{display:inline-block;padding:14px 26px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;transition:background .25s,color .25s}
+  .btn:hover{background:var(--gold);color:#1d1d1d}
+
+  footer{border-top:1px solid var(--line);padding:56px 0 30px}
+  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+  .foot .mini{font-size:26px}
+  .foot .tagline{margin-top:10px;font-size:13px;color:var(--muted)}
+  .foot h4{font-size:11px;font-weight:700;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+  .foot ul{list-style:none;display:grid;gap:8px;font-size:14px}
+  .foot ul a{color:var(--muted)} .foot ul a:hover{color:var(--white)}
+  .credit{text-align:center;margin-top:46px;font-size:10px;color:#6b6b6b;letter-spacing:.05em}
+
+  @media (max-width:860px){
+    .links{gap:16px;font-size:10px}
+    .layout{grid-template-columns:1fr;gap:30px}
+    .toc{position:static}
+    .sec p,.sec ul{padding-left:0}
+    .callout{margin-left:0}
+    .foot{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="/" class="mini" aria-label="Elvar Strategy Firm home">EL<span class="gold">V</span>AR</a>
+    <div class="links">
+      <a href="/elvar-athlete">Athlete</a>
+      <a href="/elvar-business">Business</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Elvar App &middot; Legal</div>
+    <h1>Elvar App<br>Privacy Policy</h1>
+    <div class="dates"><span>Effective <b>June 2026</b></span><span>Last updated <b>November 20, 2026</b></span></div>
+    <p class="intro">Your privacy matters to us. This policy explains what information Elvar collects, how we use it and how we protect it, including specific protections for users under 18.</p>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <aside class="toc">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#covers">1. Who This Policy Covers</a></li>
+      <li><a href="#collect">2. Information We Collect</a></li>
+      <li><a href="#use">3. How We Use Your Information</a></li>
+      <li><a href="#minors">4. Users Under 18</a></li>
+      <li><a href="#see">5. Who Can See Your Information</a></li>
+      <li><a href="#retention">6. Data Retention</a></li>
+      <li><a href="#security">7. Data Security</a></li>
+      <li><a href="#rights">8. Your Rights</a></li>
+      <li><a href="#changes">9. Changes to This Policy</a></li>
+      <li><a href="#contact">10. Contact Us</a></li>
+    </ol>
+  </aside>
+
+  <article>
+    <section class="sec" id="covers">
+      <h2><span class="n">01</span>Who This Policy Covers</h2>
+      <p>This Privacy Policy applies to all users of the Elvar app, operated by Elvar Strategy Firm, based in the Commonwealth of Massachusetts. It applies to athletes, to parents or guardians who give consent for users under 18, and to anyone else who interacts with the app.</p>
+    </section>
+
+    <section class="sec" id="collect">
+      <h2><span class="n">02</span>Information We Collect</h2>
+      <ul>
+<li><strong>Account information.</strong> When you register, we collect your name, email address, date of birth (to verify age eligibility), organization and team. For athletes under 18, we also collect a parent or guardian's name and email address for consent purposes.</li>
+<li><strong>Performance data.</strong> We collect the reflection responses you submit after practices and games, including rating-scale answers, multiple-choice answers and written responses. This is the core data the app is built around.</li>
+<li><strong>Coaching communication.</strong> We store messages and comments exchanged between athletes and Elvar coaches within the app.</li>
+<li><strong>Usage data.</strong> We collect basic usage information, such as when reflections are submitted and how often the app is used. We do not collect precise location data or track you outside the app.</li>
+</ul>
+    </section>
+
+    <section class="sec" id="use">
+      <h2><span class="n">03</span>How We Use Your Information</h2>
+      <ul>
+<li>To operate the app and deliver the reflection and coaching experience</li>
+<li>To allow Elvar coaches to review your reflections and give personalized feedback</li>
+<li>To show you your reflection history and performance trends</li>
+<li>To give partner organization administrators aggregate participation data (not individual reflection content)</li>
+<li>To improve the app over time based on usage patterns</li>
+<li>To communicate with you about your account or the app</li>
+</ul>
+<div class="callout"><strong>We do not sell your personal information.</strong> We do not use your data for advertising.</div>
+    </section>
+
+    <section class="sec" id="minors">
+      <h2><span class="n">04</span>Users Under 18</h2>
+      <p>Elvar is available to users aged 14 and older. We take the privacy of minors seriously and have specific protections in place.</p>
+<p>For users under 18, a parent or legal guardian must give verifiable consent during registration before the account is activated. By completing this consent step, the parent or guardian confirms they have reviewed this Privacy Policy and agree to the collection and use of their child's information as described here.</p>
+<p>Parents or guardians may at any time ask to review their child's information, ask us to delete their child's account and data, or withdraw consent by contacting us (see Contact Us below). After a verified request, we will delete the account and associated data within 30 days.</p>
+<p>We do not knowingly collect personal information from children under 13. If we learn that we have, we will delete it promptly.</p>
+    </section>
+
+    <section class="sec" id="see">
+      <h2><span class="n">05</span>Who Can See Your Information</h2>
+      <ul>
+<li><strong>Your Elvar coach.</strong> Your reflection responses, performance scores, coaching notes and messages are visible to your assigned Elvar coach. Coaches can view all content you submit.</li>
+<li><strong>Your organization's administrators.</strong> Partner organization administrators (such as team coaches or program directors) can view aggregate participation data, such as submission rates and average performance scores for their team. They cannot see your individual written reflections or private coaching messages.</li>
+<li><strong>Other athletes.</strong> Your reflections and messages are never visible to other athletes.</li>
+<li><strong>Service providers.</strong> We use third-party infrastructure providers (such as cloud hosting and database services) to run the app. They process data on our behalf and are not allowed to use your data for any other purpose.</li>
+</ul>
+<p><strong>Safety and legal exceptions.</strong> If something you share suggests a risk of serious harm to you or someone else, or suspected abuse or neglect of a minor, we may share the relevant information with a parent or guardian, emergency services or the appropriate authorities. We may also disclose information if required by law, such as by a court order. See our <a href="/privacy-policy">Confidentiality Policy</a> for more detail.</p>
+    </section>
+
+    <section class="sec" id="retention">
+      <h2><span class="n">06</span>Data Retention</h2>
+      <p>We keep your reflection history and coaching messages for as long as your account is active. Being able to look back at your performance over time is a core part of the app.</p>
+<p>If your account is deactivated, we keep your data in archived form for 12 months before permanently deleting it, unless you ask us to delete it sooner.</p>
+<p>For users under 18 whose parents or guardians withdraw consent, we delete the account and all associated data within 30 days of a verified request.</p>
+    </section>
+
+    <section class="sec" id="security">
+      <h2><span class="n">07</span>Data Security</h2>
+      <p>We use industry-standard security practices to protect your information, including encrypted data storage and secure transmission. No system is 100% secure and we cannot guarantee absolute security, but we take reasonable steps to protect your data from unauthorized access, loss or disclosure.</p>
+    </section>
+
+    <section class="sec" id="rights">
+      <h2><span class="n">08</span>Your Rights</h2>
+      <p>You have the right to:</p>
+<ul>
+<li>Access the personal information we hold about you</li>
+<li>Ask us to correct inaccurate information</li>
+<li>Ask us to delete your account and data</li>
+<li>Withdraw consent (for users under 18, the parent or guardian may do this)</li>
+</ul>
+<p>Massachusetts residents may have additional rights under state privacy law. To use any of these rights, contact us using the details below.</p>
+    </section>
+
+    <section class="sec" id="changes">
+      <h2><span class="n">09</span>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page and let users know through the app. For material changes affecting minors' data, we will also notify the parent or guardian email on file.</p>
+<p>See also the <a href="/elvar-app-terms">Elvar App Terms of Service</a>.</p>
+    </section>
+
+    <section class="sec" id="contact">
+      <h2><span class="n">10</span>Contact Us</h2>
+      <p>If you have questions about this Privacy Policy, want to use your rights or want to report a privacy concern, contact Elvar Strategy Firm at <a href="mailto:infoelvarmindset@gmail.com">infoelvarmindset@gmail.com</a> (Massachusetts, United States).</p>
+<p>For requests involving a minor's data, please include the athlete's name, your relationship to them and your specific request. We will respond within 10 business days.</p>
+    </section>
+
+    <div class="contact">
+      <div>
+        <h3>Privacy question or request?</h3>
+        <p>Elvar Strategy Firm &middot; infoelvarmindset@gmail.com &middot; Massachusetts, United States</p>
+      </div>
+      <a class="btn" href="mailto:infoelvarmindset@gmail.com?subject=Elvar%20App%20Privacy%20Request">Email Us</a>
+    </div>
+  </article>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="/" class="mini">EL<span class="gold">V</span>AR</a>
+        <p class="tagline">Understand Yourself. Perform Better.</p>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/terms-and-conditions">Terms and Conditions</a></li>
+          <li><a href="/privacy-policy">Confidentiality Policy</a></li>
+          <li><a href="/team-partnerships">Team Partnerships</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:mike@elvarstrategyfirm.com?subject=Looking%20to%20Partner">Email Elvar</a></li>
+          <li><a href="https://www.instagram.com/elvarmindset/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/mchavesjr" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="credit">Prepared by Michael Chaves Jr.</div>
+  </div>
+</footer>
+
+<script>
+  // highlight the section you're reading in the contents list
+  const links=[...document.querySelectorAll('.toc a')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-30% 0px -60% 0px'});
+  document.querySelectorAll('.sec').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
