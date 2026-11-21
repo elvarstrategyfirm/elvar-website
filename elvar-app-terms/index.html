@@ -258,5 +258,6 @@ document.querySelectorAll('style').forEach(function(s){s.textContent=s.textConte
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-30% 0px -60% 0px'});
   document.querySelectorAll('.sec').forEach(s=>io.observe(s));
 </script>
+<script src="/assets/js/menu.js" defer></script>
 </body>
 </html>
