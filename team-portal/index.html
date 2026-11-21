@@ -1,159 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Team Portal — Elvar Strategy Firm</title>
-<meta name="description" content="Elvar team partner portal: find your organization.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team Partner Portal | Elvar Strategy Firm</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#262626;--bg2:#1d1d1d;--card:#2e2e2e;--line:#3a3a3a;--gold:#C9A84C;--white:#fff;--text:#d9d9d9;--muted:#8a8a8a}
+  :root{--black:#0C0C0C;--ink:#141414;--card:#191919;--card2:#1F1F1F;--line:#2A2A2A;--gold:#C9A84C;--gold-soft:rgba(201,168,76,.12);--gold-line:rgba(201,168,76,.35);--white:#F2F2F2;--muted:#A3A3A3;--dim:#6E6E6E;--head:'Montserrat',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;line-height:1.6}
+  html,body{background:var(--black);color:var(--white);font-family:var(--body);-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;display:flex;flex-direction:column}
   a{color:inherit;text-decoration:none}
-  img{display:block;max-width:100%}
-  .gold{color:var(--gold)}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
-  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
-  h2{font-size:clamp(28px,3.4vw,42px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.01em;margin-top:14px}
-
-  /* NAV */
-  nav{position:fixed;inset:0 0 auto 0;z-index:50;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
-  nav.scrolled{background:rgba(29,29,29,.92);backdrop-filter:blur(10px);border-color:var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
-  .mini{font-weight:900;font-size:22px;color:var(--white)}
-  .links{display:flex;gap:28px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
-  .links a{color:#bdbdbd;transition:color .2s} .links a:hover{color:var(--white)}
-  .links a.active{color:var(--white);border-bottom:2px solid var(--gold);padding-bottom:4px}
-
-  /* HERO */
-  .hero{padding:140px 0 90px;position:relative;overflow:hidden}
-  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 30%,rgba(201,168,76,.08),transparent 55%)}
-  .hero-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
-  .back{display:inline-flex;gap:8px;align-items:center;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:30px;transition:color .2s}
-  .back:hover{color:var(--gold)}
-  h1{font-size:clamp(44px,6vw,82px);font-weight:900;color:var(--white);line-height:1;letter-spacing:-.02em;margin-top:16px}
-  h1 .line2{display:block;color:var(--gold)}
-  .lead{margin-top:26px;font-size:18px;color:var(--text);max-width:520px}
-  .hero-photo{border-radius:18px;overflow:hidden;aspect-ratio:4/5;border:1px solid var(--line);position:relative;animation:rise .9s .2s ease both}
-  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
-  .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,20,.55),transparent 45%)}
-  .hero-copy{animation:rise .9s ease both}
-
-
-  .links{align-items:center}
-  .nav-portal{color:#bdbdbd}
-  .nav-book{color:#1d1d1d!important;background:var(--gold);padding:10px 18px;border-radius:999px;font-weight:800;letter-spacing:.14em;transition:background .2s,transform .2s}
-  .nav-book:hover{background:#d8b964;transform:translateY(-1px)}
-  .hero-ctas{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:32px}
-  .hero-ctas .btn-hero{margin-top:0}
-  .partner-pill{display:inline-flex;align-items:center;gap:16px;padding:14px 28px 14px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(29,29,29,.7);transition:border-color .3s,background .3s}
-  .partner-pill:hover{border-color:var(--gold);background:rgba(29,29,29,1)}
-  .pl-icon{flex:0 0 52px;width:52px;height:52px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold)}
-  .partner-pill span:last-child{font-size:18px;font-weight:800;color:var(--white);line-height:1.3}
-  .partner-pill small{display:block;margin-bottom:3px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
-  .facts{margin-top:36px}
-
-  /* FACTS */
-  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
-  .fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;transition:border-color .3s,transform .3s}
-  .fact:hover{border-color:var(--gold);transform:translateY(-3px)}
-  .fact .big{font-size:30px;font-weight:900;color:var(--white);line-height:1}
-  .fact .big small{font-size:14px;font-weight:700;color:var(--gold);margin-left:4px;letter-spacing:.05em}
-  .fact .lbl{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.45}
-
-  /* HOW IT WORKS */
-  section{padding:100px 0}
-  .how{background:var(--bg2)}
-  .center{text-align:center;max-width:680px;margin:0 auto}
-  .center p{margin-top:16px;color:var(--muted)}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:32px 28px;position:relative}
-  .step .n{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.2em}
-  .step h3{margin-top:12px;font-size:21px;font-weight:800;color:var(--white)}
-  .step p{margin-top:10px;font-size:15px;color:var(--muted)}
-
-  /* CONSULT */
-  .consult{position:relative;overflow:hidden;text-align:center;padding:120px 0}
-  .consult::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,168,76,.12),transparent 60%)}
-  .consult .wrap{position:relative}
-  .consult p{margin:18px auto 0;max-width:560px;color:var(--text)}
-  .btn{display:inline-flex;align-items:center;gap:12px;margin-top:36px;padding:18px 34px;border-radius:999px;font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;background:var(--gold);color:#1d1d1d;transition:transform .2s,background .2s,box-shadow .2s}
-  .btn:hover{transform:translateY(-2px);background:#d8b964;box-shadow:0 14px 30px rgba(201,168,76,.25)}
-  .free{display:block;margin-top:14px;font-size:12px;color:var(--muted);letter-spacing:.08em}
-
-  /* PORTAL */
-  .portal{padding:0 0 110px}
-  .portal-card{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:34px 36px;transition:border-color .3s,transform .3s,box-shadow .3s}
-  .portal-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.4)}
-  .lock{width:62px;height:62px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold)}
-  .portal-card h3{font-size:22px;font-weight:800;color:var(--white)}
-  .portal-card p{margin-top:6px;color:var(--muted);font-size:15px}
-  .portal-card .go{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;transition:background .3s,color .3s;white-space:nowrap}
-  .portal-card:hover .go{background:var(--gold);color:#1d1d1d}
-
-  /* FOOTER */
-  footer{border-top:1px solid var(--line);padding:56px 0 30px}
-  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
-  .foot .mini{font-size:26px}
-  .foot .tagline{margin-top:10px;font-size:13px;color:var(--muted)}
-  .foot h4{font-size:11px;font-weight:700;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
-  .foot ul{list-style:none;display:grid;gap:8px;font-size:14px}
-  .foot ul a{color:var(--muted)} .foot ul a:hover{color:var(--white)}
-  .credit{text-align:center;margin-top:46px;font-size:10px;color:#6b6b6b;letter-spacing:.05em}
-
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
-  .reveal.in{opacity:1;transform:none}
-  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-
-  @media (max-width:860px){
-    .links{gap:12px;font-size:10px}
-    .links a[href="/elvar-business"],.links a.active,.nav-portal{display:none}
-    .nav-book{padding:9px 14px}
-    .hero-ctas .btn-hero{width:100%;justify-content:center;padding:18px 16px;letter-spacing:.1em;font-size:12px}
-    .partner-pill{width:100%}
-    .hero{padding:110px 0 70px}
-    .hero-grid,.steps,.foot{grid-template-columns:1fr}
-    .hero-grid{gap:40px}
-    .hero-photo{aspect-ratio:5/4}
-    .facts{grid-template-columns:1fr;gap:12px}
-    section{padding:80px 0}
-    .portal-card{grid-template-columns:1fr;text-align:center;justify-items:center}
-  }
-
-  .hero-photo.wide{aspect-ratio:4/5}
-  /* INCLUDES */
-  .inc{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:30px 26px;transition:border-color .3s,transform .3s}
-  .card:hover{border-color:var(--gold);transform:translateY(-4px)}
-  .ico{width:48px;height:48px;border-radius:12px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.35);display:flex;align-items:center;justify-content:center;color:var(--gold)}
-  .card h3{margin-top:18px;font-size:19px;font-weight:800;color:var(--white)}
-  .card p{margin-top:8px;font-size:14px;color:var(--muted)}
-  .who{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
-  .who .photo{border-radius:16px;overflow:hidden;aspect-ratio:3/2;border:1px solid var(--line)}
-  .who .photo img{width:100%;height:100%;object-fit:cover}
-  .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-  .tag{padding:9px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;color:var(--white);background:var(--bg2)}
-  .who p{margin-top:16px;color:var(--text)}
-  @media (max-width:860px){.inc{grid-template-columns:1fr 1fr}.who{grid-template-columns:1fr;gap:36px}}
-  @media (max-width:520px){.inc{grid-template-columns:1fr}}
-
-  .tp-hero{padding:150px 0 50px;text-align:center;position:relative}
-  .tp-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 20%,rgba(201,168,76,.10),transparent 60%)}
-  .tp-hero .wrap{position:relative}
-  .tp-hero h1{margin-top:14px}
-  .tp-hero p{margin:18px auto 0;max-width:560px;color:var(--muted);font-size:17px}
-  .orgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;padding-bottom:110px}
-  .org{display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 22px 28px;transition:border-color .3s,transform .3s,box-shadow .3s}
-  a.org:hover{border-color:var(--gold);transform:translateY(-5px);box-shadow:0 20px 44px rgba(0,0,0,.4)}
-  .org .mono{width:92px;height:92px;border-radius:50%;border:2px solid var(--gold);background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:24px;color:var(--gold);letter-spacing:.02em}
-  .org h3{margin-top:18px;font-size:19px;font-weight:800;color:var(--white)}
-  .org .st{margin-top:8px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
-  .org.soon{opacity:.55}
-  .org.soon .mono{border-color:#555;color:#8a8a8a;background:transparent}
-  .org.soon .st{color:var(--muted)}
+  .wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 22px}
+  main{flex:1}
+  .bar{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(12,12,12,.92);backdrop-filter:blur(8px);z-index:20}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+  .bar img{height:26px;display:block}
+  .bar-actions{display:flex;gap:10px;align-items:center}
+  .btn-gold{background:var(--gold);color:#0C0C0C;font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:11px 18px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;transition:transform .15s,filter .15s;white-space:nowrap}
+  .btn-gold:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--muted);font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:11px 16px;border-radius:999px;white-space:nowrap}
+  .btn-ghost:hover{color:var(--white);border-color:var(--dim)}
+  .hero{padding:72px 0 36px;text-align:center}
+  .eyebrow{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  .hero h1{font-family:var(--head);font-weight:900;font-size:clamp(32px,5.4vw,54px);letter-spacing:.01em;margin:14px 0;line-height:1.05;text-transform:uppercase}
+  .hero p{color:var(--muted);font-size:16px;max-width:540px;margin:0 auto;line-height:1.6}
+  .rule{width:56px;height:3px;background:var(--gold);margin:26px auto 0;border-radius:2px}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;padding:30px 0 50px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 18px 24px;text-align:center;position:relative;overflow:hidden;transition:border-color .2s,transform .2s,background .2s;display:block}
+  .tile::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .25s}
+  a.tile:hover{border-color:var(--gold-line);transform:translateY(-4px);background:var(--card2)}
+  a.tile:hover::after{transform:scaleX(1)}
+  a.tile:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .logo{width:112px;height:112px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;border:2px solid var(--gold);background:var(--gold-soft);overflow:hidden}
+  .logo img{width:78%;height:78%;object-fit:contain}
+  .logo .mono{font-family:var(--head);font-weight:900;font-size:26px;letter-spacing:.04em;color:var(--gold)}
+  .tile .name{font-family:var(--head);font-weight:800;font-size:18px;color:var(--white)}
+  .tile .sub{font-size:13px;color:var(--muted);margin-top:6px}
+  .tile .go{margin-top:16px;font-family:var(--head);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .tile.soon{opacity:.55}
+  .tile.soon .logo{border-color:#444;background:transparent;filter:grayscale(1)}
+  .tile.soon .logo .mono,.tile.soon .go{color:var(--dim)}
+  .cta{margin:10px 0 80px;border:1px solid var(--gold-line);border-radius:22px;padding:34px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:radial-gradient(120% 140% at 100% 0%,rgba(201,168,76,.16),transparent 55%),var(--card)}
+  .cta h2{font-family:var(--head);font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:.02em}
+  .cta p{color:var(--muted);font-size:15px;margin-top:6px;max-width:460px;line-height:1.5}
+  footer{border-top:1px solid var(--line);padding:22px 0 28px}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--dim)}
+  footer a:hover{color:var(--gold)}
+  footer .credit{color:#7A7A7A;font-size:11px}
+  .tile{opacity:0;transform:translateY(14px);animation:in .6s ease forwards}
+  @keyframes in{to{opacity:1;transform:none}}
+  .tile.soon{animation-name:insoon}
+  @keyframes insoon{to{opacity:.55;transform:none}}
+  @media (max-width:760px){.hero{padding:52px 0 24px}.tiles{grid-template-columns:repeat(2,1fr);gap:12px}.tile{padding:24px 10px 18px}.logo{width:84px;height:84px}.tile .name{font-size:15px}.bar .long{display:none}}
 </style>
 <script>
 /* Preview fix: when viewed at *.github.io/elvar-website/, point site links and images at that sub-folder. Does nothing on elvarstrategyfirm.com. */
@@ -162,70 +63,60 @@ function fx(u){return u&&u.charAt(0)==='/'&&u.charAt(1)!=='/'&&u.indexOf(B+'/')!
 document.addEventListener('DOMContentLoaded',function(){
 document.querySelectorAll('a[href]').forEach(function(a){a.setAttribute('href',fx(a.getAttribute('href')))});
 document.querySelectorAll('img[src]').forEach(function(i){i.setAttribute('src',fx(i.getAttribute('src')))});
-document.querySelectorAll('style').forEach(function(s){s.textContent=s.textContent.replace(/url\('\/assets/g,"url('"+B+"/assets")})});
+});
 })();
 </script>
 </head>
 <body>
-
-<nav id="nav">
+<header class="bar">
   <div class="wrap">
-    <a href="/" class="mini" aria-label="Elvar Strategy Firm home">EL<span class="gold">V</span>AR</a>
-    <div class="links">
-      <a href="/elvar-athlete" class="active">Athlete</a>
-      <a href="/elvar-business">Business</a>
-      <a class="nav-book" href="https://elvarstrategyfirm.as.me/schedule/523525b2" target="_blank" rel="noopener">Book Consult</a>
+    <a href="/team-partnerships" aria-label="Back to Team Partnerships"><img src="/assets/img/elvar-wordmark.png" alt="ELVAR"></a>
+    <div class="bar-actions">
+      <a class="btn-ghost" href="/team-partnerships">&larr; <span class="long">Team Partnerships</span></a>
+      <a class="btn-gold" href="https://elvarstrategyfirm.as.me/schedule/523525b2" target="_blank" rel="noopener">Book <span class="long">a Consult</span></a>
     </div>
-  </div>
-</nav>
-
-<header class="tp-hero">
-  <div class="wrap">
-    <a class="back" href="/team-partnerships">&larr; Team Partnerships</a>
-    <div class="eyebrow">Current team partners</div>
-    <h1>Team<span class="line2">Portal</span></h1>
-    <p>Find your organization to see your schedule, session videos and recaps.</p>
   </div>
 </header>
 
-<section style="padding-top:0">
-  <div class="wrap orgs"><a class="org" href="/evo-academy"><div class="mono">EVO</div><h3>Evo Academy</h3><div class="st">Enter portal &rarr;</div></a><div class="org soon"><div class="mono">NEE</div><h3>NE Eagles</h3><div class="st">Coming soon</div></div><div class="org soon"><div class="mono">LHS</div><h3>LHS Baseball</h3><div class="st">Coming soon</div></div><div class="org soon"><div class="mono">HP</div><h3>Hudson Post 100</h3><div class="st">Coming soon</div></div></div>
-</section>
+<main>
+  <section class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Elvar Strategy Firm</div>
+      <h1>Team Partner Portal</h1>
+      <p>Tap your organization to find your schedule, session videos, recaps and everything your athletes need.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="tiles" id="tiles"></div>
+    <div class="cta">
+      <div><h2>Want Elvar for your program?</h2><p>Book a free 15-minute consult and see what a team partnership could look like for your organization.</p></div>
+      <a class="btn-gold" href="https://elvarstrategyfirm.as.me/schedule/523525b2" target="_blank" rel="noopener">Book a Free Consult &rarr;</a>
+    </div>
+  </section>
+</main>
 
 <footer>
   <div class="wrap">
-    <div class="foot">
-      <div>
-        <a href="/" class="mini">EL<span class="gold">V</span>AR</a>
-        <p class="tagline">Understand Yourself. Perform Better.</p>
-      </div>
-      <div>
-        <h4>Support</h4>
-        <ul>
-          <li><a href="/terms-and-conditions">Terms and Conditions</a></li>
-          <li><a href="/privacy-policy">Confidentiality Policy</a></li>
-          <li><a href="/team-partnerships">Team Partnerships</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:mike@elvarstrategyfirm.com?subject=Looking%20to%20Partner">Email Elvar</a></li>
-          <li><a href="https://www.instagram.com/elvarmindset/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.linkedin.com/in/mchavesjr" target="_blank" rel="noopener">LinkedIn</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="credit">Prepared by Michael Chaves Jr.</div>
+    <span>&copy; Elvar Strategy Firm &middot; <a href="mailto:mike@elvarstrategyfirm.com">mike@elvarstrategyfirm.com</a> &middot; <a href="/privacy-policy">Privacy</a></span>
+    <span class="credit">Prepared by Michael Chaves Jr.</span>
   </div>
 </footer>
 
 <script>
-  const nav=document.getElementById('nav');
-  const onScroll=()=>nav.classList.toggle('scrolled',scrollY>40);
-  addEventListener('scroll',onScroll);onScroll();
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+/* TEAM LIST: add a partner here. logo = file in /assets/img/teams/ (shows initials until the logo is added). url = "" means "Coming soon". */
+const TEAMS = [
+  {name:"Evo Academy",      sub:"Mindset Development Program", initials:"EVO", logo:"evo-academy.png",  url:"/evo-academy"},
+  {name:"NE Eagles",        sub:"Baseball",                    initials:"NEE", logo:"ne-eagles.png",    url:""},
+  {name:"LHS Baseball",     sub:"Littleton High School",       initials:"LHS", logo:"lhs-baseball.png", url:""},
+  {name:"Hudson Post 100",  sub:"American Legion Baseball",    initials:"HP",  logo:"hudson-post-100.png", url:""}
+];
+const B = location.pathname.indexOf('/elvar-website/')===0 ? '/elvar-website' : '';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.getElementById('tiles').innerHTML = TEAMS.map((t,i) => {
+  const logo = `<div class="logo"><img src="${B}/assets/img/teams/${esc(t.logo)}" alt="${esc(t.name)} logo" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'mono',textContent:'${esc(t.initials)}'}))"></div>`;
+  const inner = `${logo}<div class="name">${esc(t.name)}</div><div class="sub">${esc(t.sub)}</div><div class="go">${t.url ? 'Enter portal &rarr;' : 'Coming soon'}</div>`;
+  const d = `style="animation-delay:${i*.08}s"`;
+  return t.url ? `<a class="tile" ${d} href="${B}${esc(t.url)}">${inner}</a>` : `<div class="tile soon" ${d}>${inner}</div>`;
+}).join('');
 </script>
 </body>
 </html>
