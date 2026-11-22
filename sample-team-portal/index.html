@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sample Team Portal | ELVAR Mindset Development Program</title>
+<meta name="description" content="A sample of the team portal every Elvar partner organization gets: session videos and recaps by age group, schedule, Zoom and the Elvar app.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#262626; --ink:#1d1d1d; --card:#2e2e2e; --card2:#333333; --line:#3a3a3a;
+    --gold:#C9A84C; --gold-soft:rgba(201,168,76,.12); --gold-line:rgba(201,168,76,.35);
+    /* sample team accent (fictional Lakeshore Ironhawks: teal + orange) */
+    --red:#E36414; --red-soft:rgba(227,100,20,.14); --red-line:rgba(227,100,20,.45); --teal:#0F3D4C;
+    --white:#FFFFFF; --body-c:#d9d9d9; --muted:#8a8a8a; --dim:#757575;
+    --head:'Montserrat',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--black);color:var(--white);font-family:var(--body);-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  .wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 22px}
+  main{flex:1}
+
+  /* sample ribbon */
+  .sample{background:var(--gold);color:#0C0C0C;text-align:center;font-size:12px;font-family:var(--head);font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;line-height:1.5}
+  .sample a{text-decoration:underline;text-underline-offset:2px}
+
+  /* top bar */
+  .bar{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(29,29,29,.94);backdrop-filter:blur(8px);z-index:20}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+  .lockup{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .wordmark{font-family:var(--head);font-weight:900;font-size:22px;letter-spacing:.06em;color:var(--white);line-height:1}
+  .wordmark b{color:var(--gold);font-weight:900}
+  .lockup .x{color:var(--dim);font-family:var(--head);font-weight:700;font-size:14px}
+  .lockup .tm{height:46px;width:auto;display:block}
+  .bar-actions{display:flex;gap:10px;align-items:center}
+  .btn-gold{background:var(--gold);color:#0C0C0C;font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:11px 18px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .15s,filter .15s;white-space:nowrap}
+  .btn-gold:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--white);font-family:var(--head);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:10px 16px;border-radius:999px;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+  .btn-ghost:hover{border-color:var(--gold-line);color:var(--gold)}
+  .btn-lg{padding:15px 24px;font-size:14px}
+
+  /* hero */
+  .hero{padding:56px 0 30px;text-align:center}
+  .hero .badge{width:132px;margin:0 auto 18px;display:block}
+  .eyebrow{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  .eyebrow .r{color:var(--red)}
+  .hero h1{font-family:var(--head);font-weight:900;font-size:clamp(30px,5.2vw,52px);margin:14px 0;line-height:1.05;text-transform:uppercase}
+  .hero p{color:var(--muted);font-size:16px;max-width:580px;margin:0 auto;line-height:1.6}
+  .facts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--muted)}
+  .chip b{color:var(--white);font-weight:600}
+  .rule{width:56px;height:3px;background:linear-gradient(90deg,var(--gold) 50%,var(--red) 50%);margin:26px auto 0;border-radius:2px}
+
+  /* "what you're looking at" note */
+  .about{background:var(--ink);border:1px dashed var(--gold-line);border-radius:18px;padding:18px 22px;margin:0 0 22px;display:flex;gap:16px;align-items:flex-start}
+  .about .ico{margin-top:2px}
+  .about p{color:var(--body-c);font-size:14px;line-height:1.6}
+  .about b{color:var(--white)}
+
+  /* quick access panel */
+  .quick{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin:0 0 44px}
+  .next{background:linear-gradient(135deg,#36321f 0%,var(--card) 70%);border:1px solid var(--gold-line);border-radius:20px;padding:26px 26px 24px;position:relative;overflow:hidden}
+  .next::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--gold)}
+  .next h2{font-family:var(--head);font-weight:900;font-size:clamp(20px,2.8vw,26px);margin:10px 0 6px;line-height:1.2}
+  .next .when{color:var(--muted);font-size:15px;margin-bottom:18px}
+  .next .when b{color:var(--white)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+  .zoominfo{color:var(--body-c);font-size:14px;margin-top:14px}
+  .app{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:10px}
+  .app h3,.card h3{font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px}
+  .app p{color:var(--muted);font-size:14px;line-height:1.55;flex:1}
+  .ico{width:28px;height:28px;border-radius:8px;background:var(--gold-soft);display:grid;place-items:center;font-size:14px;flex:none}
+
+  .sec-h{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  .sec-h h2{font-family:var(--head);font-weight:800;font-size:20px}
+  .sec-h .hint{color:var(--muted);font-size:14px}
+
+  /* team tiles */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:50px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 12px 18px;text-align:center;transition:border-color .2s,transform .2s,background .2s;position:relative;overflow:hidden;text-decoration:none;display:block}
+  .tile::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--red);transform:scaleX(0);transition:transform .25s}
+  .tile:hover{border-color:var(--gold-line);transform:translateY(-3px);background:var(--card2)}
+  .tile:hover::after{transform:scaleX(1)}
+  .mono{width:74px;height:74px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-family:var(--head);font-weight:900;font-size:22px;letter-spacing:.02em;border:2px solid var(--gold);color:var(--gold);background:var(--gold-soft)}
+  .mono.two{flex-direction:column;gap:0;font-size:17px;line-height:1.05;display:flex;align-items:center;justify-content:center}
+  .mono.two i{font-style:normal;font-size:11px;color:var(--muted);font-weight:700}
+  .tile .t{font-size:13px;color:var(--white);font-weight:600}
+  .tile .s{font-size:12px;color:var(--dim);margin-top:6px}
+
+  /* schedule */
+  .sched{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin-bottom:40px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}
+  .card h3{margin-bottom:16px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{text-align:left;font-family:var(--head);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:700;padding:0 8px 10px}
+  td{padding:12px 8px;border-top:1px solid var(--line);vertical-align:top}
+  td.n{font-family:var(--head);font-weight:900;color:var(--gold);width:40px}
+  td.d{color:var(--muted);white-space:nowrap;width:120px}
+  tr.done td{color:var(--dim)} tr.done td.n{color:var(--dim)}
+  tr.up td.d{color:var(--white);font-weight:600}
+  .tag{display:inline-block;font-size:10px;font-family:var(--head);font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:999px;margin-left:6px;vertical-align:1px}
+  .tag.next{background:var(--red);color:#fff}
+  .tag.rec{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold-line)}
+  .times td:first-child{font-family:var(--head);font-weight:800}
+  .times td:last-child{color:var(--muted);text-align:right}
+
+  /* team view */
+  .team{display:none;padding-top:34px;padding-bottom:30px}
+  .team.open{display:block}
+  .back{color:var(--muted);font-size:14px;text-decoration:none;display:inline-flex;gap:6px;margin-bottom:18px}
+  .back:hover{color:var(--gold)}
+  .welcome{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .welcome h1{font-family:var(--head);font-weight:900;font-size:clamp(28px,4.4vw,42px);line-height:1.1;margin-top:10px;text-transform:uppercase}
+  .welcome h1 span{color:var(--gold)}
+  .meta{display:flex;gap:10px;flex-wrap:wrap}
+  .teambar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:30px}
+  .teambar .nx{font-size:14px;color:var(--muted)}
+  .teambar .nx b{color:var(--white)}
+
+  .viewing{display:none;align-items:center;justify-content:space-between;gap:12px;background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:12px;padding:10px 14px;margin-bottom:20px;font-size:14px}
+  .viewing.show{display:flex}
+  .viewing button{color:var(--gold);font-weight:600;font-size:13px}
+  .sess-label{display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;margin-bottom:16px}
+  .sess-label .eyebrow{font-size:11px;white-space:nowrap}
+  .sess-label .date{color:var(--muted);font-size:14px}
+
+  .video{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000;margin-bottom:18px}
+  .vsample{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px;background:radial-gradient(80% 90% at 50% 40%,rgba(227,100,20,.20),transparent 70%),var(--ink)}
+  .vsample .play{width:78px;height:78px;border-radius:50%;background:var(--gold);display:grid;place-items:center;opacity:.9}
+  .vsample .lbl{font-family:var(--head);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+  .vsample .sub{color:var(--muted);font-size:13px;max-width:420px;line-height:1.5}
+
+  .focus{background:linear-gradient(135deg,#36321f 0%,var(--card) 70%);border:1px solid var(--gold-line);border-radius:20px;padding:26px 28px 28px;margin-bottom:18px;position:relative;overflow:hidden}
+  .focus::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--gold)}
+  .focus .txt{font-family:var(--head);font-weight:800;font-size:clamp(19px,2.6vw,25px);line-height:1.35;margin-top:12px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+  .bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .bullets li{position:relative;padding-left:20px;line-height:1.55;font-size:15px;color:var(--body-c)}
+  .bullets li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+  .actions{list-style:none;display:flex;flex-direction:column;gap:12px;counter-reset:a}
+  .actions li{counter-increment:a;display:flex;gap:14px;align-items:flex-start;background:var(--ink);border:1px solid var(--line);border-radius:14px;padding:14px 16px;line-height:1.5;font-size:15px}
+  .actions li::before{content:counter(a);flex:none;width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-family:var(--head);font-weight:900;font-size:14px;display:grid;place-items:center;margin-top:-1px}
+  b.lbl{color:var(--white);font-weight:600}
+
+  .empty{background:var(--card);border:1px dashed var(--gold-line);border-radius:20px;padding:48px 24px;text-align:center;margin-bottom:10px}
+  .empty h2{font-family:var(--head);font-weight:800;font-size:22px;margin-bottom:8px}
+  .empty p{color:var(--muted);max-width:440px;margin:0 auto;line-height:1.6}
+
+  .history{margin-top:40px}
+  .hlist{display:flex;flex-direction:column;gap:10px}
+  .hitem{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;transition:border-color .15s,background .15s}
+  button.hitem:hover{border-color:var(--gold-line);background:var(--card2)}
+  .hitem.active{border-color:var(--gold)}
+  .hitem.locked{opacity:.55;cursor:default}
+  .hitem .num{flex:none;font-family:var(--head);font-weight:900;color:var(--gold);font-size:13px;letter-spacing:.08em;width:92px;white-space:nowrap}
+  .hitem.locked .num{color:var(--dim)}
+  .hitem .hd{flex:none;color:var(--muted);font-size:13px;width:110px}
+  .hitem .hf{flex:1;font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hitem .arr{color:var(--dim);font-size:12px;white-space:nowrap}
+
+  .cta{margin:48px 0 70px;border:1px solid var(--gold-line);border-radius:22px;padding:30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:radial-gradient(120% 140% at 100% 0%,rgba(227,100,20,.18),transparent 55%),var(--card)}
+  .cta h2{font-family:var(--head);font-weight:900;font-size:22px;text-transform:uppercase}
+  .cta p{color:var(--muted);font-size:15px;margin-top:6px;max-width:500px;line-height:1.5}
+  .cta.landing-cta{margin-top:10px}
+
+  .navlinks{display:flex;gap:18px;margin-right:6px}
+  .navlinks a{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+  .navlinks a:hover{color:var(--gold)}
+  .howto{list-style:none;counter-reset:h;display:flex;flex-direction:column;gap:6px;margin-top:16px;font-size:13px;color:var(--body-c)}
+  .howto li{counter-increment:h;display:flex;gap:10px}
+  .howto li::before{content:counter(h);flex:none;width:20px;height:20px;border-radius:50%;border:1px solid var(--gold-line);color:var(--gold);font-family:var(--head);font-weight:800;font-size:11px;display:grid;place-items:center}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:var(--ink);border:1px solid var(--gold-line);color:var(--white);padding:14px 18px;border-radius:14px;font-size:14px;max-width:min(92vw,440px);text-align:center;line-height:1.5;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  footer{border-top:1px solid var(--line);padding:22px 0 28px;background:var(--ink)}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--dim)}
+  footer .links{display:flex;gap:16px;flex-wrap:wrap}
+  footer a{text-decoration:none} footer a:hover{color:var(--gold)}
+  footer .note{width:100%;color:var(--dim);font-size:11px;line-height:1.5}
+  footer .credit{color:#7A7A7A;font-size:11px;width:100%}
+
+  @media (max-width:760px){
+    .quick,.sched,.grid2{grid-template-columns:1fr}
+    .hero{padding:40px 0 22px}
+    .hero .badge{width:108px}
+    .tiles{grid-template-columns:repeat(2,1fr);gap:12px}
+    .wordmark{font-size:17px} .lockup .tm{height:38px}
+    .bar .long,.navlinks{display:none}
+    .hitem .hd{display:none}
+    .focus,.card,.next,.app{padding:20px}
+    .btn-lg{width:100%;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- Team logo (fictional sample team), reused in header and hero -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="teamlogo" viewBox="0 0 120 140">
+      <path d="M60 4 L113 19 V64 C113 99 91 121 60 136 C29 121 7 99 7 64 V19 Z" fill="#0F3D4C" stroke="#E36414" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M60 13 L104 25.5 V64 C104 93 86 112 60 125 C34 112 16 93 16 64 V25.5 Z" fill="none" stroke="#F2E8DA" stroke-opacity=".35" stroke-width="1.5"/>
+      <text x="60" y="37" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-weight="800" font-size="8.5" letter-spacing="2.2" fill="#F2E8DA">LAKESHORE</text>
+      <!-- stylized hawk head, facing right -->
+      <path d="M30 86 C30 66 42 50 62 46 C74 44 86 47 93 54 L104 58 L95 63 C97 66 97 70 94 72 L88 66 C84 70 78 72 72 72 L66 84 L56 80 L48 92 Z" fill="#F2E8DA"/>
+      <path d="M93 54 L104 58 L95 63 C94 60 93.5 57 93 54 Z" fill="#E36414"/>
+      <path d="M44 70 L60 64 L74 62" fill="none" stroke="#0F3D4C" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="80" cy="55" r="3.6" fill="#0F3D4C"/>
+      <circle cx="81" cy="54" r="1.2" fill="#E36414"/>
+      <rect x="14" y="98" width="92" height="17" rx="3" fill="#E36414"/>
+      <text x="60" y="111" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="11.5" letter-spacing="1.4" fill="#0F3D4C">IRONHAWKS</text>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="sample">Sample portal &middot; The team, players and recaps on this page are made up to show what partner teams get. <a href="https://elvarstrategyfirm.com/team-partnerships">Bring this to your team &rarr;</a></div>
+
+<header class="bar">
+  <div class="wrap">
+    <a href="#" class="lockup" aria-label="Sample team portal home">
+      <span class="wordmark">EL<b>V</b>AR</span>
+      <span class="x">&times;</span>
+      <svg class="tm" viewBox="0 0 120 140" role="img" aria-label="Lakeshore Ironhawks (sample team)"><use href="#teamlogo"/></svg>
+    </a>
+    <div class="bar-actions">
+      <nav class="navlinks"><a href="https://elvarstrategyfirm.com/elvar-athlete">Athlete</a><a href="https://elvarstrategyfirm.com/team-partnerships">Team Partnerships</a></nav>
+      <a class="btn-gold" href="https://elvarstrategyfirm.as.me/schedule/523525b2" target="_blank" rel="noopener">Book <span class="long">Consult</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="landing" class="wrap">
+    <div class="hero">
+      <svg class="badge" viewBox="0 0 120 140" role="img" aria-label="Lakeshore Ironhawks (sample team)"><use href="#teamlogo"/></svg>
+      <div class="eyebrow">Elvar <span class="r">&times;</span> Lakeshore Ironhawks</div>
+      <h1>Mindset Development Program</h1>
+      <p>Your team portal. Join your Zoom, get the Elvar app, and rewatch every session with its main focus, key takeaways and actions for the week.</p>
+      <div class="facts" id="facts"></div>
+      <div class="rule"></div>
+    </div>
+
+    <div class="about">
+      <span class="ico">&#128064;</span>
+      <p><b>Coaches, here's what you're looking at.</b> This is a sample team three weeks into a six-week program. Every partner organization gets a portal like this with its own logo and colors. After each Sunday session, every age group gets its own recap: a main focus, key takeaways and actions for the week. Tap an age group below to see the first three weeks.</p>
+    </div>
+
+    <div class="quick" id="quick"></div>
+
+    <div class="sec-h"><h2>Pick your team</h2><span class="hint">Tap your age group for your session videos and recaps.</span></div>
+    <div class="tiles" id="tiles"></div>
+
+    <div class="sec-h"><h2>Program schedule</h2><span class="hint" id="schedHint"></span></div>
+    <div class="sched">
+      <div class="card"><h3><span class="ico">&#128197;</span>Sessions</h3><table id="schedTable"></table></div>
+      <div class="card"><h3><span class="ico">&#9201;</span>Team Times</h3><table class="times" id="timesTable"></table></div>
+    </div>
+
+    <div class="cta landing-cta">
+      <div><h2>Want this for your team?</h2><p>Your own portal, a six-week virtual program built around your age groups, athlete booklets and the Elvar app. Book a free 15-minute call with Coach Mike.</p></div>
+      <div class="btnrow">
+        <a class="btn-gold" href="https://elvarstrategyfirm.as.me/schedule/523525b2" target="_blank" rel="noopener">Book a Free Consult &rarr;</a>
+        <a class="btn-ghost" href="https://elvarstrategyfirm.com/team-partnerships">Team Partnerships</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" class="team wrap" aria-live="polite"></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="https://elvarstrategyfirm.com/">&copy; Elvar Strategy Firm</a>
+      <a href="mailto:mike@elvarstrategyfirm.com">mike@elvarstrategyfirm.com</a>
+      <a href="https://www.instagram.com/elvarmindset/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://elvarstrategyfirm.com/privacy-policy">Privacy</a>
+    </div>
+    <span class="note">Sample only. "Lakeshore Ironhawks" is a made-up team created for this demo and isn't affiliated with any real organization.</span>
+    <span class="credit">Prepared by Michael Chaves Jr.</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* =====================================================================
+   SAMPLE DATA. A fictional team 3 weeks into a 6-week program.
+   Session dates are worked out from today, so the page always shows
+   Sessions 1-3 done and Sessions 4-6 upcoming.
+   ===================================================================== */
+const iso = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const now = new Date(); now.setHours(12,0,0,0);
+const s3 = new Date(now); s3.setDate(now.getDate() - (now.getDay() === 0 ? 7 : now.getDay())); /* last Sunday before today */
+const sunday = n => { const d = new Date(s3); d.setDate(s3.getDate() + (n-3)*7); return iso(d); };
+
+const PROGRAM = {
+  team: "Ironhawks",
+  day: "Sunday", length: "25 min", timezone: "Eastern Time",
+  app: { link: "https://apps.apple.com/us/app/elvar/id6786340318",
+         blurb: "Athletes log quick reflections after practices and games and keep working on each Sunday's topic between sessions. Partner teams get their own team code. iPhone only." },
+  booking: "https://elvarstrategyfirm.as.me/schedule/523525b2",
+  howTo: ["Join 5 minutes early. Camera on.", "Rename yourself: First Name – Age Group.", "Have your booklet and a pencil ready."],
+  sessions: [
+    { n:1, topic:"What Can I Control" },
+    { n:2, topic:"Talking to Yourself in Games" },
+    { n:3, topic:"Understanding & Controlling Your Emotions" },
+    { n:4, topic:"Playing with Confidence" },
+    { n:5, topic:"Handling Pressure in Big Moments" },
+    { n:6, topic:"Resetting After Bad Situations" }
+  ].map(s => ({ ...s, date: sunday(s.n) })),
+  groups: [
+    { id:"9U-10U",  label:"9U & 10U",  ages:[9,10],  time:"5:30–5:55 PM" },
+    { id:"11U-12U", label:"11U & 12U", ages:[11,12], time:"6:00–6:25 PM" },
+    { id:"13U-14U", label:"13U & 14U", ages:[13,14], time:"6:30–6:55 PM" },
+    { id:"15U-16U", label:"15U & 16U", ages:[15,16], time:"7:00–7:25 PM" }
+  ],
+  recaps: [
+    /* ---------------- 9U & 10U ---------------- */
+    { team:"9U-10U", session:1,
+      mainFocus:"You can't control the umpire, the weather or the other team. You CAN control your effort, your attitude and what you do after a mistake.",
+      takeaways:[
+        "Two buckets: things I control (effort, attitude, body language, being ready) and things I don't (umpires, weather, the scoreboard).",
+        "Worrying about the 'don't control' bucket uses up energy you need for the next pitch.",
+        "Great players still strike out. They just go right back to what they control.",
+        "Your teammates notice your body language before they notice your stats."
+      ],
+      actions:[
+        "Control circle: Draw your circle in your booklet and add three things you control at practice.",
+        "One-word check: Before every at-bat this week, say one word you control, like \"effort\" or \"ready.\"",
+        "Ask a parent or coach to point out one time you showed great body language."
+      ]},
+    { team:"9U-10U", session:2,
+      mainFocus:"The voice in your head is part of your team. Make it a good teammate.",
+      takeaways:[
+        "Everyone talks to themselves during games. The goal is to make that voice helpful.",
+        "Swap \"Don't strike out\" for \"See it, hit it.\" Your brain listens better when you tell it what to DO.",
+        "Talk to yourself after a mistake the way you'd talk to your best friend.",
+        "Short and simple works best: \"Next pitch,\" \"I got this,\" \"Breathe.\""
+      ],
+      actions:[
+        "Pick your phrase: Choose one go-to phrase and write it on your booklet page.",
+        "Flip it: When you hear a negative thought at practice, flip it into a \"do\" statement.",
+        "Say your phrase out loud three times before your first game this week."
+      ]},
+    { team:"9U-10U", session:3,
+      mainFocus:"Feelings are normal. Big feelings work like a traffic light: notice the color, then choose your next move.",
+      takeaways:[
+        "Green means calm and ready. Yellow means getting frustrated or nervous. Red means too upset to think clearly.",
+        "You can't stop feelings from showing up, but you can choose what you do next.",
+        "A big belly breath is the fastest way to get from red back to yellow.",
+        "It's okay to be upset after a bad play. Staying upset for the next three plays hurts the team."
+      ],
+      actions:[
+        "Traffic light check: After each inning, notice which color you're on.",
+        "Belly breaths: Practice three slow belly breaths before bed every night.",
+        "Tell a parent about one moment you went from yellow back to green."
+      ]},
+
+    /* ---------------- 11U & 12U ---------------- */
+    { team:"11U-12U", session:1,
+      mainFocus:"Focus on what you control (effort, attitude, preparation and your response) and let go of the rest.",
+      takeaways:[
+        "Your control list: effort, attitude, preparation, body language and how you respond to mistakes.",
+        "Your let-it-go list: umpire calls, field conditions, playing-time decisions and the other team.",
+        "Energy spent on things you can't control is energy taken from the next pitch.",
+        "Coaches want players who respond well to failure, not players who never fail."
+      ],
+      actions:[
+        "Sort it out: Write five things that frustrated you last season and sort them into Control vs. Let Go.",
+        "Pre-game plan: Pick one controllable goal for each game this week, like sprinting every ball out.",
+        "Post-game check: Rate yourself 1–5 on effort and attitude, not on results."
+      ]},
+    { team:"11U-12U", session:2,
+      mainFocus:"Your self-talk drives your next action. Turn \"what if I fail\" into \"here's what I'm going to do.\"",
+      takeaways:[
+        "Negative self-talk usually sounds like \"don't,\" \"always\" or \"never.\"",
+        "Instruction phrases (\"hands inside,\" \"quick feet\") help your skills. Motivation phrases (\"I'm ready\") help your confidence.",
+        "Try saying \"you\" instead of \"I\" when you coach yourself. It feels like a coach in your corner.",
+        "Self-talk is a skill. It gets stronger with reps, just like your swing."
+      ],
+      actions:[
+        "Catch it: Notice three negative thoughts at practice this week and write them down.",
+        "Rewrite it: Turn each one into an instruction or motivation phrase.",
+        "Rep it: Use your new phrase during every round of BP."
+      ]},
+    { team:"11U-12U", session:3,
+      mainFocus:"Spot your emotions early, name them, and run a reset routine before they take over your next play.",
+      takeaways:[
+        "Frustration, nerves and excitement show up in your body first: tight hands, fast breathing, a hot face.",
+        "Naming the feeling (\"I'm frustrated\") helps calm it down.",
+        "A reset routine has three parts: breathe, release (wipe your hands, touch your hat), then refocus on one cue.",
+        "Emotions are information, not instructions."
+      ],
+      actions:[
+        "Body scan: After a tough moment this week, notice where you felt it in your body.",
+        "Build your reset: Write your three-step reset routine in your booklet.",
+        "Use it: Run your reset after every mistake at practice, even small ones."
+      ]},
+
+    /* ---------------- 13U & 14U ---------------- */
+    { team:"13U-14U", session:1,
+      mainFocus:"Separate the process from the outcome. You own your preparation and your approach, and results follow.",
+      takeaways:[
+        "Outcome goals (go 2-for-3) aren't fully in your control. Process goals (hunt a fastball early, stay through the middle) are.",
+        "A hard-hit out is a win in the process. A bloop hit is luck.",
+        "Players who judge themselves only by results ride an emotional roller coaster all season.",
+        "Preparation (sleep, food, warmup) is the most controllable edge you have."
+      ],
+      actions:[
+        "Process goals: Set two process goals for each game this week and grade yourself only on those.",
+        "Quality at-bats: Use the booklet tracker to count quality at-bats instead of hits.",
+        "Prep audit: Write down your sleep and pre-game routine for three days and find one thing to improve."
+      ]},
+    { team:"13U-14U", session:2,
+      mainFocus:"Build a short, specific self-talk script for the moments that matter: before the pitch, after a mistake and in big spots.",
+      takeaways:[
+        "Self-talk during the pitch should be one or two words. Thinking too much slows your body down.",
+        "Between pitches is where you coach yourself. During the pitch is where you trust it.",
+        "After a mistake, your first thought decides the next five minutes. Have it ready ahead of time.",
+        "Confident players still have negative thoughts. They just don't let those thoughts lead."
+      ],
+      actions:[
+        "Script it: Write your three phrases for pre-pitch, after a mistake and big moments.",
+        "Practice it: Use the same phrases at practice so they're automatic in games.",
+        "Game check: After your next game, write down what your self-talk sounded like in your toughest at-bat."
+      ]},
+    { team:"13U-14U", session:3,
+      mainFocus:"Learn your emotional warning signs and step out of the moment before one bad pitch turns into a bad inning.",
+      takeaways:[
+        "Most bad innings start with one emotional moment that snowballs.",
+        "Know your warning signs: rushing, overthinking, staring at the dugout, a short temper.",
+        "The step-out is a real tool. Hitters step out of the box, pitchers step off the rubber, fielders reset between pitches.",
+        "Calm doesn't mean flat. You want controlled intensity."
+      ],
+      actions:[
+        "Warning signs: List your top three emotional warning signs in your booklet.",
+        "Step-out routine: Pick a physical cue to use when you notice one (step off, adjust your gloves, deep breath).",
+        "Inning recap: After each game this week, note one moment you caught your emotions early."
+      ]},
+
+    /* ---------------- 15U & 16U ---------------- */
+    { team:"15U-16U", session:1,
+      mainFocus:"Strong players control their approach, their preparation and their response, and that's what college coaches watch.",
+      takeaways:[
+        "College coaches watch how you act after a strikeout as closely as how you swing.",
+        "Controllables: approach, preparation, body language, communication, recovery and response.",
+        "Comparing yourself to other players' stats or offers is a can't-control that drains focus.",
+        "The more pressure you feel about outcomes, the more you need to anchor to process."
+      ],
+      actions:[
+        "Pressure inventory: Write down what you're stressing about this season and circle what you actually control.",
+        "Game-day routine: Write out your controllable routine from wake-up to first pitch.",
+        "Body language check: Ask a coach or teammate for honest feedback on your body language after failure."
+      ]},
+    { team:"15U-16U", session:2,
+      mainFocus:"Train your inner voice like a skill: specific, honest and built to hold up under pressure.",
+      takeaways:[
+        "Fake positivity (\"I can't fail\") breaks under pressure. Honest, task-focused self-talk holds up.",
+        "Coach yourself: what would a great coach say to you right now?",
+        "The right phrase can steady your breathing and your focus in under five seconds.",
+        "How you talk to yourself off the field (school, workouts) carries onto the field."
+      ],
+      actions:[
+        "Three-situation script: Write your self-talk for 0-2 counts, errors and late-inning at-bats.",
+        "Daily rep: Pick one negative thought each day and rewrite it in your booklet.",
+        "Journal it: Log your self-talk in the Elvar app after each game this week."
+      ]},
+    { team:"15U-16U", session:3,
+      mainFocus:"Use emotions as fuel instead of letting them steer. Notice them, name them and point that energy at your next rep.",
+      takeaways:[
+        "Nerves and adrenaline feel the same in your body. Calling it \"ready\" instead of \"scared\" changes how you play.",
+        "Anger can add intensity, but only when it's aimed at the next rep instead of the last one.",
+        "Your breathing is the remote control for your nervous system.",
+        "Older players face bigger swings (playing time, recruiting, school), and the same tools apply."
+      ],
+      actions:[
+        "Reframe it: Next time you feel nervous, say \"I'm ready\" and notice the difference.",
+        "Box breathing: Breathe in 4, hold 4, out 4, hold 4. Do two rounds before every game this week.",
+        "Emotion log: Rate your emotional control 1–10 after each game and note what helped."
+      ]}
+  ]
+};
+/* ===================================================================== */
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const fmtDate = d => { try { return new Date(d+"T12:00:00").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); } catch(e){ return d; } };
+const today = iso(new Date());
+const slug = g => g.id.toLowerCase();
+const monoFor = g => { const p = String(g.label).split(/\s*&\s*/); return p.length === 2 ? `<div class="mono two"><span>${esc(p[0])}</span><i>&amp;</i><span>${esc(p[1])}</span></div>` : `<div class="mono">${esc(g.label)}</div>`; };
+const recapsFor = g => PROGRAM.recaps.filter(r => r.team === g.id);
+const fmtItem = x => { const m=String(x).match(/^([^:]{2,40}):\s+(.*)$/s); return m ? `<b class="lbl">${esc(m[1])}:</b> ${esc(m[2])}` : esc(x); };
+const list = items => `<ul class="bullets">${(items||[]).map(x=>`<li>${fmtItem(x)}</li>`).join("")}</ul>`;
+const nextSession = () => PROGRAM.sessions.find(x => x.date >= today) || null;
+
+/* sample-only: buttons that would open the team's private Zoom */
+const zoomBtn = big => `<button type="button" class="btn-gold ${big?"btn-lg":""}" data-sample="zoom">&#9654; Join Zoom</button>`;
+const appBtn = () => `<a class="btn-ghost" href="${esc(PROGRAM.app.link)}" target="_blank" rel="noopener">Get the Elvar App</a>`;
+let tt;
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),3800); }
+document.addEventListener("click", e => {
+  if (e.target.closest('[data-sample="zoom"]')) toast("This is a sample. Partner teams get a private Zoom link and passcode here, plus a Join button that works on any phone.");
+});
+
+/* ---------- landing ---------- */
+function renderLanding(){
+  $("#facts").innerHTML = [
+    `<b>${PROGRAM.sessions.length}</b> sessions`,
+    `<b>${esc(PROGRAM.length)}</b> per team`,
+    `<b>${esc(PROGRAM.day)}s</b> on Zoom`,
+    `<b>3 of 6</b> complete`
+  ].map(t=>`<span class="chip">${t}</span>`).join("");
+
+  const nx = nextSession();
+  const isToday = nx && nx.date === today;
+  $("#quick").innerHTML = `
+    <div class="next">
+      <div class="eyebrow">${isToday ? "Today's session" : "Next session"}</div>
+      <h2>Session ${nx.n}: ${esc(nx.topic)}</h2>
+      <div class="when"><b>${esc(fmtDate(nx.date))}</b> &middot; find your team's time below</div>
+      <div class="btnrow">${zoomBtn(true)}</div>
+      <ol class="howto">${PROGRAM.howTo.map(x=>`<li><span>${esc(x)}</span></li>`).join("")}</ol>
+    </div>
+    <div class="app">
+      <h3><span class="ico">&#128241;</span>The Elvar App</h3>
+      <p>${esc(PROGRAM.app.blurb)}</p>
+      <div>${appBtn()}</div>
+    </div>`;
+
+  $("#tiles").innerHTML = PROGRAM.groups.map(g => `<a class="tile" href="#${slug(g)}">
+      ${monoFor(g)}
+      <div class="t">${esc(g.time)}</div>
+      <div class="s">Sundays &middot; tap for videos &amp; recaps</div>
+    </a>`).join("");
+
+  $("#schedHint").textContent = `${PROGRAM.day}s · ${PROGRAM.length} · ${PROGRAM.timezone}`;
+  $("#schedTable").innerHTML = `<tr><th>#</th><th>Date</th><th>Topic</th></tr>` + PROGRAM.sessions.map(s => {
+    const done = s.date < today, up = nx && nx.n === s.n;
+    return `<tr class="${done?"done":""} ${up?"up":""}"><td class="n">${s.n}</td><td class="d">${esc(fmtDate(s.date))}</td><td>${esc(s.topic)}${up?`<span class="tag next">${isToday?"Today":"Next"}</span>`:""}${done?`<span class="tag rec">Recap posted</span>`:""}</td></tr>`;
+  }).join("");
+  $("#timesTable").innerHTML = PROGRAM.groups.map(g => `<tr><td>${esc(g.label)}</td><td>${esc(g.time)}</td></tr>`).join("");
+}
+
+/* ---------- team view ---------- */
+let team = null, viewN = null;
+function videoBlock(s){
+  return `<div class="video"><div class="vsample"><span class="play"><svg width="28" height="28" viewBox="0 0 24 24" fill="#0C0C0C"><path d="M8 5v14l11-7z"/></svg></span><span class="lbl">Session ${s.n} Recording</span><span class="sub">Partner teams can rewatch the full session here. Videos are private to your team.</span></div></div>`;
+}
+
+function renderTeam(){
+  const g = team, recs = recapsFor(g);
+  const nx = nextSession();
+  const out = PROGRAM.sessions.filter(s => recs.some(r => r.session === s.n));
+  const latestN = out.length ? out[out.length-1].n : null;
+  if (viewN == null) viewN = latestN;
+  const s = PROGRAM.sessions.find(x => x.n === viewN);
+  const r = recs.find(x => x.session === s.n);
+  const latest = s.n === latestN;
+
+  let html = `
+    <a class="back" href="#">&larr; All teams</a>
+    <div class="welcome">
+      <div>
+        <div class="eyebrow">Elvar <span class="r">&times;</span> Lakeshore Ironhawks &middot; Team Portal</div>
+        <h1>${esc(PROGRAM.team)} <span>${esc(g.label)}</span></h1>
+      </div>
+      <div class="meta"><div class="chip">Sundays <b>${esc(g.time)}</b></div></div>
+    </div>
+    <div class="teambar">
+      <div class="nx">${nx.date===today?"Today":"Next"}: <b>Session ${nx.n} &middot; ${esc(nx.topic)}</b> &middot; ${esc(fmtDate(nx.date))}, ${esc(g.time)}</div>
+      <div class="btnrow">${zoomBtn(false)}${appBtn()}</div>
+    </div>
+    <div class="viewing ${latest?"":"show"}"><span>You're viewing Session ${s.n}.</span><button type="button" data-go="${latestN}">Back to latest &rarr;</button></div>
+    <div class="sess-label"><span class="eyebrow">${latest?"Latest session":"Session "+s.n}</span><span class="date">Session ${s.n} &middot; ${esc(s.topic)} &middot; ${esc(fmtDate(s.date))}</span></div>
+    ${videoBlock(s)}
+    <div class="focus"><div class="eyebrow">${esc(g.label)} &middot; Main Focus</div><div class="txt">${esc(r.mainFocus)}</div></div>
+    <div class="grid2">
+      <div class="card"><h3><span class="ico">&#9733;</span>Key Takeaways</h3>${list(r.takeaways)}</div>
+      <div class="card"><h3><span class="ico">&#10003;</span>Your Actions This Week</h3><ol class="actions">${r.actions.map(t=>`<li><span>${fmtItem(t)}</span></li>`).join("")}</ol></div>
+    </div>
+    <div class="history">
+      <div class="sec-h"><h2>All sessions</h2><span class="hint">Tap a posted session to reopen its video and recap.</span></div>
+      <div class="hlist">
+        ${PROGRAM.sessions.map(x => {
+          const isOut = out.some(o => o.n === x.n);
+          const status = isOut ? `<span class="tag rec">Watch &amp; recap</span>` : (nx && nx.n===x.n ? `<span class="tag next">${x.date===today?"Today":"Next"}</span>` : "Upcoming");
+          return isOut
+            ? `<button type="button" class="hitem ${x.n===viewN?"active":""}" data-go="${x.n}"><span class="num">SESSION ${x.n}</span><span class="hd">${esc(fmtDate(x.date))}</span><span class="hf">${esc(x.topic)}</span><span class="arr">${status} &rarr;</span></button>`
+            : `<div class="hitem locked"><span class="num">SESSION ${x.n}</span><span class="hd">${esc(fmtDate(x.date))}</span><span class="hf">${esc(x.topic)}</span><span class="arr">${status}</span></div>`;
+        }).join("")}
+      </div>
+    </div>
+    <div class="cta">
+      <div><h2>Want this for your team?</h2><p>Every partner team gets its own portal, age-group recaps after every session, athlete booklets and the Elvar app. Book a free 15-minute call with Coach Mike.</p></div>
+      <div class="btnrow">
+        <a class="btn-gold" href="${esc(PROGRAM.booking)}" target="_blank" rel="noopener">Book a Free Consult &rarr;</a>
+        <a class="btn-ghost" href="https://elvarstrategyfirm.com/team-partnerships">Team Partnerships</a>
+      </div>
+    </div>`;
+
+  $("#team").innerHTML = html;
+  $("#team").querySelectorAll("[data-go]").forEach(b => b.onclick = () => { viewN = +b.dataset.go; renderTeam(); $("#team").scrollIntoView({behavior:"smooth"}); });
+  reveal();
+}
+
+/* ---------- routing: #11u-12u, or a single age like #12u ---------- */
+function route(){
+  const h = (location.hash || "").slice(1).toLowerCase();
+  const age = (h.match(/^(\d+)u$/)||[])[1];
+  const g = PROGRAM.groups.find(x => slug(x) === h) || (age ? PROGRAM.groups.find(x => x.ages.includes(+age)) : null);
+  if (g){
+    team = g; viewN = null;
+    $("#landing").style.display = "none"; $("#team").classList.add("open"); renderTeam();
+  } else {
+    team = null; $("#team").classList.remove("open"); $("#team").innerHTML = ""; $("#landing").style.display = ""; renderLanding();
+  }
+  window.scrollTo(0,0);
+  reveal();
+}
+
+let io = null;
+function reveal(){
+  const els = document.querySelectorAll(".quick > *, .tiles .tile, .sched .card, .landing-cta, .team .video, .team .focus, .team .grid2 .card, .team .history, .team .cta");
+  if (!("IntersectionObserver" in window)) return;
+  io = io || new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.08});
+  els.forEach(el => { if (!el.classList.contains("in")){ el.classList.add("reveal"); io.observe(el); } });
+}
+
+addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>

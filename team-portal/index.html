@@ -41,6 +41,7 @@
   .tile .name{font-family:var(--head);font-weight:800;font-size:18px;color:var(--white)}
   .tile .sub{font-size:13px;color:var(--muted);margin-top:6px}
   .tile .go{margin-top:16px;font-family:var(--head);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .tile .tag-sample{position:absolute;top:14px;right:14px;background:var(--gold);color:#0C0C0C;font-family:var(--head);font-weight:800;font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
   .tile.soon{opacity:.55}
   .tile.soon .logo{border-color:#444;background:transparent;filter:grayscale(1)}
   .tile.soon .logo.has-img{background:#fff;filter:grayscale(.6);opacity:.8}
@@ -109,13 +110,14 @@ const TEAMS = [
   {name:"Evo Academy",      sub:"Mindset Development Program", initials:"EVO", logo:"evo-academy.png",  url:"/evo-academy"},
   {name:"NE Eagles",        sub:"Baseball",                    initials:"NEE", logo:"ne-eagles.png",    url:"/ne-eagles"},
   {name:"LHS Baseball",     sub:"Littleton High School",       initials:"LHS", logo:"lhs-baseball.png", url:""},
-  {name:"Hudson Post 100",  sub:"American Legion Baseball",    initials:"HP",  logo:"hudson-post-100.png", url:""}
+  {name:"Hudson Post 100",  sub:"American Legion Baseball",    initials:"HP",  logo:"hudson-post-100.png", url:""},
+  {name:"Sample Team Portal", sub:"See what partner teams get", initials:"SAMPLE", logo:"sample-team.svg", url:"/sample-team-portal", tag:"Sample"}
 ];
 const B = location.pathname.indexOf('/elvar-website/')===0 ? '/elvar-website' : '';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 document.getElementById('tiles').innerHTML = TEAMS.map((t,i) => {
   const logo = `<div class="logo has-img"><img src="${B}/assets/img/teams/${esc(t.logo)}" alt="${esc(t.name)} logo" onerror="this.parentNode.classList.remove('has-img');this.replaceWith(Object.assign(document.createElement('span'),{className:'mono',textContent:'${esc(t.initials)}'}))"></div>`;
-  const inner = `${logo}<div class="name">${esc(t.name)}</div><div class="sub">${esc(t.sub)}</div><div class="go">${t.url ? 'Enter portal &rarr;' : 'Coming soon'}</div>`;
+  const inner = `${t.tag ? `<span class="tag-sample">${esc(t.tag)}</span>` : ''}${logo}<div class="name">${esc(t.name)}</div><div class="sub">${esc(t.sub)}</div><div class="go">${t.url ? (t.tag ? 'View sample &rarr;' : 'Enter portal &rarr;') : 'Coming soon'}</div>`;
   const d = `style="animation-delay:${i*.08}s"`;
   return t.url ? `<a class="tile" ${d} href="${B}${esc(t.url)}">${inner}</a>` : `<div class="tile soon" ${d}>${inner}</div>`;
 }).join('');
